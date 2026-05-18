@@ -1,0 +1,14 @@
+Dear Jason,
+
+Thank you very much for your reply. I really appreciate you taking the time to check whether Conjecture 3.2 is still open.
+
+I am certainly not attached only to that specific conjecture. If it has already been solved, or if it is not the best starting point, I would be very happy to work on another problem that you think is more suitable. In particular, I would be very interested in problems closer to your current projects on random or non-autonomous dynamical systems, open-system questions, extreme value theory, or nonstationary dynamics.
+
+Given my computer science background, I may be able to contribute usefully on the computational side as well, for example by implementing algorithms, running numerical experiments, simulating random or non-autonomous dynamics, analysing extreme value statistics in nonstationary systems, or preparing reproducible code and technical notes. At the same time, I am very willing to learn the necessary dynamical systems, ergodic theory, probability, functional analysis, and operator-theoretic background.
+
+I would be glad to contribute in any useful way, whether through reading, proof checking, numerical experiments, implementation, or developing a more detailed technical note.
+
+I look forward to hearing from you when convenient.
+
+Best regards,
+Guangjian

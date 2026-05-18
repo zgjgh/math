@@ -1,0 +1,16 @@
+Subject: Question about Conjecture 3.2 and inflated dynamic Laplacians
+
+Dear Professor Froyland,
+
+My name is Guangjian Zhang. I am currently a PhD student in Computer Science at UNSW, and I am beginning my third year. My research so far has been in high-dimensional kNN query processing. I have co-authored four papers: "Survey on exact kNN queries over high-dimensional data space", "Efficient kNN join over dynamic high-dimensional data", "Efficient continuous kNN join over dynamic high-dimensional data", and "A Cluster-Based Approach to kNN Join Over Batch-Dynamic High-Dimensional Data". The second paper received the Best Paper Award at the Australasian Database Conference (ADC 2022), and the fourth received the Best Paper Award at the International Conference on Advanced Data Mining and Applications (ADMA 2024). I also have two further manuscripts that are complete and currently being polished for submission.
+
+Beyond my computer science work, I have a strong personal interest in mathematics. I have been studying your work on inflated dynamic Laplacians and finite-time coherent sets. In particular, I have worked through the tutorial by Froyland (2024), and have started reading substantial parts of your CPAM paper with Peter Koltai and the later paper containing Conjecture 3.2. I am especially interested in the limiting problem relating S_a, H_a to s_D, h_D as a tends to infinity. I also noticed the analogous Dirichlet version in Conjecture 3.5, and would be very happy to work on that direction as well if it is a more suitable starting point.
+
+I would very much like to try to work on this conjecture, but I do not yet know the right technical route or the best references for the necessary tools. I would be grateful for your guidance on whether this direction is still active and whether it would be a reasonable problem for me to attempt.
+
+I would not need any funding or remuneration. I am mainly hoping for an opportunity to work on a mathematical problem under your guidance and to contribute useful work. As I am now in the third year of my PhD, I hope to use a substantial part of my remaining time before the end of 2027 to work seriously on mathematics. If Conjecture 3.2 is not the right starting point, I would also be very happy to help with any other mathematical research problem where my background could be useful.
+
+If you are open to it, I would be grateful for a short 20--30 minute conversation sometime next week, in person or online, or at any other time convenient for you. I have attached a short preliminary note summarising my current understanding and possible first steps.
+
+Best regards,
+Guangjian Zhang

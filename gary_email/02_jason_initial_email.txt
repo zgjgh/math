@@ -1,0 +1,22 @@
+Subject: Possible mathematical research under your guidance
+
+Dear Dr Atnip,
+
+My name is Guangjian Zhang. I am currently a PhD student in Computer Science at UNSW, and I am beginning my third year. My research so far has been in high-dimensional kNN query processing. I have co-authored four papers: "Survey on exact kNN queries over high-dimensional data space", "Efficient kNN join over dynamic high-dimensional data", "Efficient continuous kNN join over dynamic high-dimensional data", and "A Cluster-Based Approach to kNN Join Over Batch-Dynamic High-Dimensional Data". The second paper received the Best Paper Award at the Australasian Database Conference (ADC 2022), and the fourth received the Best Paper Award at the International Conference on Advanced Data Mining and Applications (ADMA 2024). I also have two further manuscripts that are complete and currently being polished for submission.
+
+Beyond my computer science work, I have a strong personal interest in mathematics, and I hope to use a substantial part of my remaining PhD time before the end of 2027 to work seriously on a mathematical problem. I saw from your website and the current project advertisements that your research includes random and non-autonomous dynamical systems, ergodic theory, thermodynamic formalism, extreme value theory, and related computational/statistical questions for nonstationary systems.
+
+I would be very interested in contributing to any mathematical research direction that you think would be suitable, including your current work on extreme value theory for random dynamical systems or related problems involving nonstationary dynamics. My computer science background may be useful for algorithmic work, numerical experiments, implementation, technical note preparation, and reading/proof checking, while I am willing to learn the necessary dynamical systems, ergodic theory, probability, and functional analysis background along the way.
+
+One concrete direction I have already started thinking about is your paper with Froyland and Koltai on the inflated dynamic Laplacian. I am particularly interested in Conjecture 3.2, concerning the limiting relation between S_a, H_a and s_D, h_D as a tends to infinity, and I also noticed the analogous Dirichlet version in Conjecture 3.5. I do not know whether this is still active or whether it is the best starting point, but I have attached a short one-page preliminary note summarising my current understanding and possible first steps.
+
+I am not seeking funding or remuneration. I am mainly hoping for an opportunity to work on a suitable mathematical problem under guidance and to contribute useful work. If Conjecture 3.2 is not a good entry point, I would be very happy to follow your advice and work on another problem connected to your current projects.
+
+If you are open to it, I would be grateful for a short 20--30 minute conversation sometime this week or next week, in person or online, or at any other time convenient for you.
+
+Best regards,
+Guangjian Zhang
+
+Teams follow-up:
+
+Hi Dr Atnip, I just sent you a short email about possible mathematical research under your guidance, including a concrete question around Conjecture 3.2 in your inflated dynamic Laplacian paper. I would be very grateful for your advice if you have time. Best, Guangjian
