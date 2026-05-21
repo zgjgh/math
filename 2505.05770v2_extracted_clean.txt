@@ -1,0 +1,2514 @@
+
+
+===== PAGE 1 =====
+ON THE STRUCTURE OF COMPLEX SPECTRA AND
+EIGENFUNCTIONS OF TRANSFER AND KOOPMAN OPERATORS
+MATHEUS M. CASTRO AND GARY FROYLAND
+Abstract. Complex eigenspectra of transfer and Koopman operators describe rota-
+tional motion in dynamical systems. A particularly relevant situation in applications
+is when the rotation speed depends on the state-space position of the dynamics. We
+consider a canonical model of such dynamics in the presence of small noise, and provide
+precise characterisations of the eigenspectrum and eigenfunctions of the corresponding
+transfer operators. Further, we study the limiting behaviour of the eigenspectrum and
+eigenfunctions in the zero-noise limit, including their quadratic and linear response. Our
+results clarify the structure of transfer and Koopman operator eigenspectra, and provide
+new interpretations relevant to applications. Our theorems on support localisation of the
+eigenfunctions yield simple algorithms to detect the existence and state-space location
+of approximately cyclic motion with distinct periods. Our numerical results verify that
+information on the cycle periods and their locations determined by the operator eigendata
+is insensitive to noise level in the linear response regime. We believe that the dynamic
+mechanisms underlying the eigendata and their properties apply rather broadly and
+enhance our understanding of approximate cycle detection in dynamical systems with
+operator methods.
+1.Introduction
+Over the last three decades, operator-theoretic techniques have proven to be highly
+successful methods of analysis for complex dynamical systems. The basis of the analysis is
+usually the dominant eigenspectrum of a transfer operator or Koopman operator and the
+corresponding eigenfunctions. In the autonomous setting, where the underlying dynamics
+does not change in time, large real spectral values correspond to almost-invariant sets
+(large regions of state space that have no collective state-space motion under the dynamics)
+[7,6]. This concept has been applied extensively in several fields, including molecular
+dynamics [ 27] to find stable molecular conformations, space mission design [ 5] to identify
+orbital trapping regions, and physical oceanography [ 14,15,25] to map ocean gyres and
+garbage patches. Regardingcomplexeigenvalues, the Halmos–von Neumann Theorem
+(see e.g. [ 8, Theorem 17.11]) states that each ergodic measure-preserving system with
+discrete spectrum is isomorphic to an ergodic rotation system, for example, an aperiodic
+rotation on a n-torus. This concept has been used extensively in the context of Koopman
+operators, e.g. [24, 26].
+The current paper takes the underlying Halmos–von Neumann idea and extends it in
+two ways. Firstly,we allow the rotation to depend on the location in the state space, rather
+than being fixed along a particular coordinate throughout the state space. Secondly,we
+make a detailed study of the effect of noiseon the complex eigenvalues and eigenfunctions.
+The motivation for this study is that complex dynamical systems often possess many
+School of Mathematics and Statistics, UNSW Sydney, Sydney NSW 2052, Australia
+E-mail address:m.manzatto decastro@unsw.edu.au, g.froyland@unsw.edu.au.
+Date: May 8, 2026.
+Key words and phrases.Transfer operator, Koopman operator, complex spectrum, cycle extraction,
+zero-noise limit, linear response.
+1arXiv:2505.05770v2  [math.DS]  6 May 2026
+
+
+===== PAGE 2 =====
+co-existing cycles or approximate cycles. For example, in the Earth system, climate drivers
+such as the El-Ni˜ no Southern Oscillation (ENSO) and the Madden–Julian Oscillation
+(MJO) are approximate co-existing cycles that influence the weather and climate. On even
+longer timescales, changing glacial cycles describe how northern-hemisphere continental
+ice sheets repeatedly accumulate and melt over millions of years.
+Recent work [ 10,11] has demonstrated that transfer operator methods are a flexible
+and reliable way of extracting cycles from models, observations, and even time series
+of spatial fields; for example extracting the ENSO cycle from a time series of observed
+sea-surface temperature fields. Long-lived persistent cycles typically give rise to complex
+eigenvalues in the dominant spectrum of the transfer operator.The magnitude of the
+eigenvalue quantifies the rate of temporal decay of the cycle, while the argument of the
+eigenvalue directly provides an estimate of the cycle’s period. Moreover, the corresponding
+eigenfunctions may be used to represent the cycle in terms of the original spatiotemporal
+time series[10].
+These ideas may be illustrated with the Lorenz equations, where an estimate of the
+transfer operator is constructed and the complex eigenvalue with largest magnitude is
+computed. The left panel of Figure 1 displays the magnitude of the complex entries of the
+corresponding eigenvector on a blue colourscale, and the right panel shows the argument
+of the complex entries on a periodic colourscale. In this example, the argument of the
+Figure 1. Left: Magnitude of the leading complex eigenvector of the normalised
+transfer operator for the Lorenz flow. A peak in magnitude occurs in the vicinity
+of the lowest-period periodic orbit of the Lorenz equations with a period of 1 .5586
+time units (shown in red, see Fig. 10a [ 13] and [ 9]). Right: The argument of the
+complex eigenvector. In the periodic colormap, one sees a full rotation around
+each of the two wings as the argument proceeds from−πtoπ; see [10].
+eigenvalue associated with this complex eigenvector corresponds to a cycle of period 0 .770.
+This period is roughly half that of the lowest-period periodic orbit of the Lorenz equations,
+which loops once around each wing (displayed in red in Figure 1(left)). We make this
+comparison to emphasise that we arenotaiming to detect single periodic orbits, but
+instead to capture large regions in the state space that revolve with an approximately
+constant period. The eigenvector detects that the dominant cycle in the Lorenz system
+consists of wide bands on each wing that rotate around each wing with a period of roughly
+0.770. The symmetry of the Lorenz equations under ( x, y, z )7→(−x,−y, z ), is reflected in
+the representation of the cycle in Figure 1(right): the cycle phase given by the argument
+respects this symmetry, see [10] for details.
+2
+
+
+===== PAGE 3 =====
+Figure 2. Illustration of noisy rotational dynamics on circular fibres. Each
+horizontal black line represents a copy of S1. In one iteration of the dynamics,
+a point xon the jthfibre is (i) rotated by αjtox+αj, (ii) a random rotation
+drawn uniformly from the interval ( −δ, δ ) is added (shown as a red interval), and
+(iii) finally one moves from fibre jto fibre j′according to the Markov chain with
+conditional probability Wε,j,j′. In this figure, fibres 1, 2, and 3 all rotate with the
+same speed, α1=α2=α3. Similarly, the fibres jandj+ 1 rotate at the same
+speed, as do the final group of fibres numbered. . . , , N−1, N.
+Our focus in this work is to provide a formal explanation for the behaviour of the
+spectrum and eigenfunctions of the transfer operator in the presence of coexisting cycles
+with different periods. Roughly speaking,eigenfunctions corresponding to cycles with
+distinct periods should have supports that are largely disjoint, because large overlaps would
+need to simultaneously rotate at two distinct speeds. Our formal analysis concentrates
+on a mathematical model with multiple coexisting cycles, acting on a discrete collection
+of circles, between which trajectories may randomly jump under the influence of noise.
+Our state space Mis the union of Ncircles: M:={1, . . . , N} ×S1, which we view
+as a cylinder that has been discretised along its central axis. The dynamics on the jth
+circular band of the discretised cylinder is a rotation with speed αj; see Figure 2. We are
+particularly interested in the case where several neighbouring circular fibres rotate with
+the same speed, as in Figure 3. The dynamics on these groups of fibres model bands of
+fluid rotating with a common speed.
+The addition of noise is a crucial selection procedure that promotes important eigen-
+functions of the transfer/Koopman operator by associating them with large-magnitude
+eigenvalues. This heuristic is classical for the eigenvalue 1 where the eigenfunction corre-
+sponds to the invariant measure [ 21,20,30,1], which describes the state-space distribution
+of long trajectories, and for large positive real eigenvalues in connection with almost-
+invariant sets and metastability [ 7]. Moreover, the addition of noise may also be useful for
+proving convergence of numerical schemes [ 7,19,4]. It has also been applied in the context
+of thermodynamic formalism, where noise perturbations identify equilibrium states by
+associating them with large-magnitude eigenvalues of suitable operators [ 3,2]. Further
+motivations for considering the addition of noise are:
+(1) models and observations are imperfect and often subject to small errors;
+3
+
+
+===== PAGE 4 =====
+0.0 0.5 1.00.00.51.0Streamlines of cylinder rotations
+rotationspeed
+0.00.51.0Figure 3. Streamlines of the cylinder rotation model with three bands of circular
+fibres with widths L1= 11, L2= 7, L3= 15 and rotation speeds β1=π/20, β2=
+e/7, β 3= 1/√
+2, respectively.
+(2)many numerical approaches to estimating transfer and Koopman operators intro-
+duce artificial noise or diffusion through reduction to a finite-rank representation
+of the operator;
+(3)the addition of noise enables formal discussion of spectra and eigenfunctions of
+transfer operators acting on simple spaces such asL2;
+(4)zero-noise limits are difficult limits of singular type, yet remain relevant and are
+the type observed in numerical experiments.
+This work builds fundamental theory to support the heuristic notion that the addition of
+noisepromotes eigenfunctions connected with dominant cycles toward the largest-magnitude
+complex eigenvalues. We achieve this by conducting a formal analysis of a model system
+that possesses the relevant cyclic properties. We perturb this model with noise and
+carefully study the zero-noise limit, fully characterising the limiting eigenvalues and
+the form of the limiting eigenfunctions. Moreover, we prove quadratic response of the
+eigenvalues and linear response of the eigenfunctions, the form of which demonstrates
+astrong robustness of the support-localisation of the eigenfunctions to a range of small
+noise.
+To introduce noise to our model we use a discrete-time Markov process between the
+circular fibres governed by an N×N stochastic transition matrix Wε≥0 that converges
+to the identity matrix as ε→0. For example, if we have N= 33 fibres as in Figure 3, the
+matrix
+Wε:=
+1−ε
+2ε
+2ε
+21−εε
+2ε
+21−εε
+2.........
+ε
+21−εε
+2ε
+21−ε
+2
+.(1)
+will be suitable for our model. Additionally, on each circular fibre we apply i.i.d. additive
+noise. In summary, the dynamics T:M→M is given by T(j, x) = (j, x+αj) + (γ, η),
+4
+
+
+===== PAGE 5 =====
+where γis selected according to the Markov chain Wϵconditioned on being in state j, and
+ηis an i.i.d. random variable with values uniformly distributed in [ −δ, δ]. Equivalently,
+for each ε >0 we consider a Markov chain Xε,δ
+n= (Iε
+n, Yε,δ
+n) onM, where Iε
+nis a Markov
+chain on {1, . . . , N} with transition matrix Wεsatisfying Wε,i,j=P(Iε
+1=j|Iε
+0=i). The
+second component evolves according to Yε,δ
+n+1:=Yε,δ
+n+αIεn+ηδ
+n,where ( ηδ
+n)n≥0are i.i.d.
+random variables, each uniformly distributed on [−δ, δ] as above.
+For this model, we demonstrate a separable structure of the eigenfunctions of the transfer
+operator (Proposition 2.3) and use this structure to generate a series of precise results
+regarding zero-noise limits. We prove that as the noise εapproaches zero, the eigenvalues
+converge to a complex exponential given by one of the rotation speeds, linearly in εwith
+an explicit bound for the distance from the limit (Proposition 2.3). When there are bands
+of neighbouring circular fibres that share a rotation speed,clustersof eigenvalues approach
+a single complex exponential (Theorem 2.8 and Figure 4(left)). We prove that in the
+ε→0 limit, the corresponding eigenfunctions approach an orthonormal basis supported
+on the band (Theorem 2.8 and Figure 5). Despite having multiple eigenvalues converging
+to a single eigenvalue, we develop a quadratic response formula for the eigenvalues and
+linear response formulae for the eigenfunctions (Theorem 2.10). The supports of the latter
+are also restricted to their associated band, resulting in this support localisation property
+being particularly robust for small noise levels. Proposition 2.13 covers the response of
+eigenvalues and eigenvectors of the transfer operator with respect to perturbations of the
+rotation speeds{α j}N
+j=1.
+An outline of the paper is as follows. In Section 2, we construct our model, with dynamics
+as shown in Figure 2, and state our main results. Section 2 contains a detailed running
+example that illustrates and interprets the conclusions of our theory. For this running
+example, Figure 3 illustrates the fluid-band structure of the model, Figure 4 summarises
+the behaviour of the most important (lowest-order) eigenvalues and eigenvectors for
+modest positive ε, Figure 5 visualises the magnitude and argument of the corresponding
+eigenfunctions on the full cylindrical domain, and Figure 6 summarises the response
+behaviour of these eigenvalues and eigenvectors. The proofs of the main results are carried
+out in Sections 3–6.
+2.Model and statements of main results
+2.1.The model.The Perron–Frobenius operator corresponding to the Markov chain on
+the fibres{1, ..., N}is given by
+Pbase,εf(j′) :=NX
+j=1Wε,j,j′f(j),(2)
+On thejthband, the annealed transfer operatorP δ↾j:L1(S1)→L1(S1) is given by
+Pδ↾jh(x) :=1
+2δZ
+[−δ,δ]h(x−α j−η)dη.(3)
+The product of the discrete uniform probability measure on {1, . . . , N} and normalised
+Lebesgue measure on S1is denoted by m. Using the form of T, and letting F∈L1(M),
+the annealed transfer operator with respectmis given by
+Pε,δF(j′, x) =NX
+j=1Wε,j,j′1
+2δZ
+[−δ,δ]F(j, x−α j−η)dη.
+5
+
+
+===== PAGE 6 =====
+We now writeF(j, x) =f(j)h j(x) to highlight the skew-product nature ofTandP ε,δ.
+Pε,δF(j′, x) =NX
+j=1Wε,j,j′f(j)1
+2δZ
+[−δ,δ]hj(x−α j−η)dη
+=NX
+j=1Wε,j,j′f(j)P δ↾jhj(x) =P base,εf(j)· P δ↾jhj(x).(4)
+Because each Pδ↾jis the transfer operator for a rotation on the jthcircle by αj(plus
+uniform bounded noise), the eigenfunctions of Pδ↾jare complex exponentials of increasing
+order,independent of j. Thus, as we shall shortly see, the eigenfunctions of Pε,δare
+separable in the variablesjandx.
+2.2.General behaviour of eigenvalues and eigenfunctions.
+2.2.1.The case of ε= 0.Before we begin our main analysis, it is informative to consider
+the simple situation where ε= 0 and δ≥0. This corresponds to no noise between the
+circular fibres, and δ-noise along fibres. With no noise connecting the distinct copies of S1,
+the rotations on each circle all individually contribute to generate the full eigenspectrum
+ofP 0,δ.
+Proposition 2.1.The spectrum of P0,δconsists of the N-fold union of the eigenvaluesSN
+j=1σ(P δ↾j), where
+σ(P δ↾j) =[
+k∈Zsin(2πkδ)
+2πkδe−2πikα j
+∪ {0}.(5)
+Proof. In this case Wε=Id, therefore (4)implies that given F(j, x) =P
+k∈Zfk(j)e2πikx∈
+L2(M). Using (3) one has
+P0,δF(j, x) =X
+k∈Zf(j)P δ↾j(e2πikx) =X
+k∈Zf(j)1
+2δZδ
+−δe2πik(x−α j−η)dη
+=X
+k∈Zsin(2πkδ)
+2πkδe−2πikα j
+f(j)e2πikx,
+where sin(0)/0 should be interpreted as 1 in the above equation. Thus, by comparing the
+Fourier modes ofP 0,δFandλFwe obtain (5).□
+The modes k=±1 are the primary modes of oscillation corresponding to a single
+oscillation around the circle, as shown by the e2πikxterm in the final display equation
+above. In practice, selecting k=±1 makes the extraction of the αjfrom an eigenvalue
+straightforward because of the argument term of e−2πikα j. For positive δthe damping factor
+sin(2πkδ)
+2πkδsuppresses higher-order Fourier modes. In particular, the k=±1 modes have the
+largest magnitude (apart from the trivial constant mode), making the identification of the
+k=±1 modes simpler.
+Remark 2.2.All of the results in Section 2 can be easily generalized from the state space
+M={1, . . . , N} ×S1to a state spaceM={1, . . . , N} ×Tdwhere:
+(1)theαj-rotations on the circle S1=T1are replaced with ( αj,1, . . . , α j,d)-translations
+on thed-torusTd.
+(2)the discrete fibres {1, . . . , N} are no longer discretely filling an interval, but
+discretely fill a connected subset ofRd′.
+6
+
+
+===== PAGE 7 =====
+Such a situation allows one to create models of rather general rotational dynamics. For
+example, a simple extension to d= 1 and d′= 2 would model fluid rotation around a
+solid three-dimensional torus, with the Nfibres discretely filling out the non-periodic two-
+dimensional cross-section of the solid torus. Subsets Bsof{1, . . . , N} calledband members
+(see Definition 2.4) represent solid “tubes” Bs×S1⊂R2×S1of three-dimensional fluid
+that rotate at a common angular speed inside a solid three-dimensional torus. Alternatively
+– remaining in a solid three-dimensional torus – we may set d= 2 and d′= 1 to model
+translations on two-dimensional nested toral shells within the solid torus. Bands (subsets
+of{1, . . . , N}) represent nested families of solid toriB s×T2⊂R×T2(like Matryoshka
+dolls) with common translations on each member of the family.
+In this general setting, the spectrum ofP 0,δis
+N[
+j=1σ(P δ↾j) =N[
+j=1[
+k∈Zd(dY
+q=1sin(2πk qδ)
+2πk qδe−2πik qαj,q)
+∪ {0}
+where αj,qis the rotation speed on fibre jalong coordinate direction q. Concerning
+the extension from S1toTd, the same proofs of all of our results follow with minor
+adaptations. For the extension of the fibres {1, . . . , N} filling out sets in Rd′, one only
+needs to appropriately adjust the matricesW ϵ. For example, ind′dimensions, a natural
+choice would be to construct Wϵfrom a finite-difference stencil for the Laplace operator
+on a regular grid in d′dimensions (see (1)for such a choice for d′= 1). For the sake of
+simplicity of exposition, we restrict the statements and proofs of all results to the case
+d= 1.
+2.2.2.The case of ε >0.In the remainder of this work, we will assume that δ= 0 (no
+along-fibre noise) because
+(1) the effect ofδon the spectrum is simply to multiply each eigenvalue bysin(2πkδ)
+2πkδ,
+(2) the eigenfunctions are unaffected by changes inδ.
+Hereafter we will denote Pε,δby simply Pε. When ε >0 we no longer have a closed form
+expression for the eigenvalues and eigenfunctions of Pε, but we can characterise them as
+eigenvalues and eigenvectors of the simple matrix productD k,αWεwhere
+Dk,α= Diag(e−2πikα 1, . . . , e−2πikα N),(6)
+and analyse their behaviour for smallε >0 asε→0.
+Proposition 2.3.Letα= (α 1, . . . , α N)∈RN.
+(1)For every ε >0, each k∈Z gives rise to N(generalised) eigenfunctions F(ℓ)
+k,εof
+the operatorP ε:L2(M)→L2(M), of the separable form
+F(ℓ)
+k,ε(j, x) =f(ℓ)
+k,ε(j)e2πikxfor allℓ∈ {1, . . . , N},(7)
+where the correspondingNeigenvalues are denotedλ(ℓ)
+k,ε, ℓ= 1, . . . , N.
+(2) For sufficiently smallε >0one has
+|λ(ℓ)
+k,ε−e−2πikα ℓ| ≤2 max
+1≤j≤N(1−W ε,j,j)for allk, ℓ∈ {1, . . . , N},(8)
+andarg
+λ(ℓ)
+k,ε
+−2πkα ℓ(mod 2π)≤2πmax
+1≤j≤N(1−W ε,j,j)for allk, ℓ∈ {1, . . . , N}
+Proof.See Section 3.1.□
+7
+
+
+===== PAGE 8 =====
+Figure 4.Left:The small coloured disks indicate the spectrum λ1,ε(forδ=ε=
+0.1) of the 33 ×33 matrix Dk,αWε=Dk,β,LWε, associated to the model from
+Figure 3, where β= (π/20, e/7,1/√
+2) and L= (11 ,7,15). The large black circle
+is the unit circle in the complex plane. Note that the 33 eigenvalues are distinct
+and that they appear in groups, with Lieigenvalues nearby exp(−2πikβ i) for
+i= 1,2,3. The relevant bounds (8)from Proposition 2.3 are shown as dark
+blue circles.Right:Plot of |f(ℓ)
+k,ε(j)|vs lattice index jforℓ= 1,2,4, where the
+ordering of the eigenvalues are shown in the left panel. We plot the eigenvectors
+of the largest-magnitude eigenvalue from each of the three groups corresponding
+tok= 1; the eigenvectors have been normalised to have unit norm.
+We recall that for practical purposes we are interested in the primary oscillations given
+by the k=±1 modes, as discussed immediately after Proposition 2.1. The bound in (8)
+is tight; see Figure 4(left), where the elements of {αj}33
+j=1take on one of three distinct
+values. The error bounds are shown as dark blue circles.
+Using Proposition 2.3, we assume from now on that the eigenvalues λ(1)
+k,ε, . . . , λ(N)
+k,εare
+labelled such that
+λ(ℓ)
+k,εε→0− − →e−2πikα ℓfor everyℓ∈ {1, . . . , N}..(9)
+2.3.The case of multiple fibres with common rotation speed.A particularly inter-
+esting situation arises when some αjare identical for neighbouring js. This corresponds to
+a band of fluid rotating at the same speed, and handling this physically relevant situation
+requires a more careful analysis. This motivates the following definition.
+Definition 2.4( S-banded).A N-vector α=(α1, . . . , α N)∈RNis said to be S-bandedif
+there exist
+(i) a natural number 1≤S≤N,
+(ii) distinct real numbersβ 1, . . . , β S∈R, and
+(iii) a vector of positive integer numbersL= (L 1, . . . , L S) satisfyingPN
+i=1Li=N,
+such that
+αj=β sifN s−1< j≤N sfor somes∈ {1, . . . , S},
+whereN 0< N 1< . . . < N S=Nis a sequence of recursively defined natural numbers
+N0= 0 andN i=L i+N i−1ifi∈ {1, . . . , S}
+In the above context, the vector β= (β1, . . . , β S) is referred to as aband vector, and Lis
+called theband-width vector. Moreover, given s∈ { 1, . . . , S} we denote theband members
+ofβsasBs={j∈N :Ns−1< j≤N s}.Observe that from the convention adopted in (9)
+we have that{ℓ∈ {1, . . . , N}:λ(ℓ)
+k,ε→e−2πikβ sasε→0}=B s.
+8
+
+
+===== PAGE 9 =====
+Figure 5. Details of leading eigenfunctions of PεonM, constructed from the
+eigenvectors in Figure 4.Upper row:Magnitudes of the extremal three eigen-
+functions F(ℓ)
+k,ε(j, x) =f(ℓ)
+k,ε(j)e2πikx,ℓ= 1,2,4 and k= 1 on M={1, . . . , 33} ×S1
+corresponding to the eigenvectors fin Figure 4, using colourschemes to match
+the colouring in Figure 4. Note that the support of each eigenfunction is approxi-
+mately restricted to the bands associated with one of the three rotation speeds
+illustrated in Figure 2.Lower row:As for the upper row, but displaying the
+arguments of eigenfunctions instead of the magnitudes. Note that exactly one
+complex cycle occurs becausek= 1.
+Example 2.5(S-banded).
+(1) anyN-vectorα= (α 1, . . . , α n) with distinct entries isN-banded,
+(2)the 5-vector α= (√
+2,√
+2,√
+2, π, π ) is 2-banded with band vector β= (√
+2, π) and
+band-width vectorL= (3,2),
+(3)the 5-vector α= (√
+2,√
+2, π,√
+2,√
+2) is not an S-banded vector for any 1 ≤S≤N .
+As part of our running example, associated to the 33-fibre case study with Wεas in
+(1), we choose S= 3 bands rotating at incommensurate speeds given by the vector
+β= (π/20, e/7,1/√
+2), and with corresponding band-width vector L= (11 ,7,15); see
+Figure 3.
+Letαbe an S-banded N-vector for some 1 ≤S < N , then there is at least one
+1≤s≤S such that βshas band width Ls≥2. Proposition 2.3(2) tells us that for a
+given Fourier index k,λ(ℓ)
+k,εconverges to exp(−2πikβ s) for Ls-fold ℓ, this phenomenon is
+illustrated in Figure 4 (left). Therefore, one expects an Ls-dimensional subspace spanned
+by the corresponding eigenvectors F(ℓ)
+k,εto converge to some Ls-dimensional space, but the
+question of convergence of individual eigenvectors and their characterisation is still unclear.
+9
+
+
+===== PAGE 10 =====
+To study this limit we must slightly constrain the one-parameter family of matrices Wε
+that control noise between circular fibres.
+Definition 2.6( L-admissible family of matrices).Given an S-vector L= (L1, . . . , L s),
+the family of N×N matrices {Wε=Id+ε˙W} ε≥0is called L-admissible if the symmetric
+matrix ˙Wsatisfies:
+(1)˙Wij≥0 fori̸=j∈ {1, . . . , N}andPN
+j=1˙Wij= 0,∀i∈ {1, . . . , N}.
+(2)˙WhasNdistinct eigenvalues.
+(3)For each s∈ { 1, . . . , S} , the Ls×L ssubmatrix ˆWs:=˙Wjk
+Ns−1<j,k≤N shasLs
+distinct eigenvalues.
+Example 2.7(Noise between circular fibres).The matrix Wεin(1)is constructed as
+Wε:= Id +ε ˙W, where
+˙W:=
+−1
+21
+21
+2−11
+21
+2−11
+2.........
+1
+2−11
+21
+2−1
+2
+.
+This matrix clearly satisfies items (1) and (2) of Definition 2.6 for any band-width vector
+L. Item (3) of Definition 2.6 holds because submatrices of ˙Wcorrespond to central
+difference approximations of the Laplace operator on an interval with either mixed
+Neumann/Dirichlet boundary conditions (for the first and last submatrix) or Dirichlet
+boundary conditions (for “internal” submatrices) (see e.g. [ 31, Section 3]). Thus, Wεis
+anL-admissible family for any bandwidth vectorL.
+In the ε→0 limit, instead of considering eigenfunctions, we use eigenprojections, as
+eigenfunctions can always be multiplied by unit-norm complex scalars, which alters their
+phase. This phase freedom makes the proofs of convergence and linear response more
+difficult. Eigenprojections, on the other hand, remain well defined and invariant under
+such transformations. Theorem 2.8 establishes that if the elements of the band vector are
+incommensurate, the eigenprojections of Pεconverge as ε→0. Furthermore, the limiting
+projections can be precisely characterized in terms of eigenvectors of specific matrices.
+Theorem 2.8.Let N∈N ,1≤S≤N ,L= (L1, . . . , L S)be a band-width vector and
+{Wε= Id +ε ˙W} ε≥0anL-admissible family of matrices. Then for each
+β∈Γ :={(β 1, . . . , β S)∈RS:e−2πikβ s1̸=e−2πikβ s2∀k∈Z,∀s 1, s2∈ {1, . . . , S}}
+andk∈Z:
+(1)For sufficiently small ε(depending on k), the Ngeneralised eigenfunctions F(ℓ)
+k,ε
+from(7)becomeNeigenfunctions with distinct eigenvaluesλ(ℓ)
+k,ε,ℓ= 1, . . . , N.
+(2) For sufficiently smallε >0(depending onk) and eachℓ= 1, . . . , N, recall
+F(ℓ)
+k(j, x) =f(ℓ)
+k(j)e2πkix
+and letΠ(ℓ)
+k,Π(ℓ)
+k,ε:L2(M)→L2(M)denote L2-orthogonal projections onto the
+spans of the eigenfunctions F(ℓ)
+k,εandF(ℓ)
+k, respectively. In the ε→0limit there
+exists a limiting orthonormal basis{f(ℓ)
+k}N
+ℓ=1ofCNsuch that
+Π(ℓ)
+k,εε→0− − →Πℓ
+kin theL2(M)-operator norm.
+10
+
+
+===== PAGE 11 =====
+We may further characterise the{f(ℓ)
+k}N
+ℓ=1as follows:
+(a)IfS= 1(one band, all fibres rotate with the same speed) or k= 0,{f(ℓ)
+k}N
+ℓ=1
+is an orthonormal eigenbasis of theN×Nmatrix ˙W.
+(b)IfS > 1(multiple bands) and k∈Z\ { 0},{f(ℓ)
+k}N
+ℓ=1is an orthonormal
+eigenbasis of the matrix
+ˆPk,β,L:=D k,β,LˆWL (10)
+where
+Dk,β,L:=
+e−2πikβ 1IdL1...
+e−2πikβ SIdLS,
+,
+ˆWL:=
+ˆW1
+ˆW2
+...
+ˆWS−1
+ˆWS
+,(11)
+andIdnis the n×n identity matrix. Moreover, for each s∈ { 1, . . . , S} , ifℓis a
+band member of βs, the support of F(ℓ)
+kis contained in {Ns−1+1, . . . , N s}×S1.
+Proof.See Sections 3.2, 3.3 and 4.□
+In our main case of interest, namely 1 < S < N , Theorem 2.8 provides explicit formulae
+for the ε→ 0 limiting eigenfunctions and constrains the supports of these limiting
+eigenfunctions to their associated band fibres.
+Example 2.9(Small ε >0 and ε→0 behavior of eigenvalues and eigenfunctions).We
+continue our example where Wεis given by (1),β= (π/20, e/7,1/√
+2), and L= (11 ,7,15).
+Eigenvalues:For ε=δ= 0.1, Figure 4(left) shows the eigenspectrum of ˆP1,β,L(i.e. for
+k= 1). For sufficiently small ε, Proposition 2.3(2) states that these eigenvalues cluster
+about the 3 angles in the vector 2 πβ; the latter is indicated by dotted rays. The bound
+(8)(including a factor sin(2πδ)/(2πδ)) is indicated with dark blue circles and is seen to
+be very close to optimal. Theorem 2.8 states that for sufficiently small εwe obtain 33
+distinct eigenvalues for eachk∈Z, with corresponding one-dimensional eigenspaces.
+Eigenfunctions:Proposition 2.3 states that all eigenfunctions of Pare of the form
+F(ℓ)
+k,ε(j, x) =f(ℓ)
+k,ε(j)e2πikx,ℓ= 1, . . . , 33;k∈Z . The magnitudes of f(ℓ)
+k,εforℓ= 1,2,4 (those
+eigenvectors of Dk,β,LWεcorresponding to the three largest-magnitude eigenvalues) are
+shown in Figure 4(right). Importantly, note that because of the particular form of F(ℓ)
+k,ε(j, x)
+given above, the magnitudes of the full eigenfunctions F(ℓ)
+k,εonMare constant along the
+circular fibres and therefore follow precisely the magnitudes given by the eigenvectors fℓ
+k,ε,
+such as those in Figure 4(right); see Figure 5.
+The upper row of Figure 5 can be compared with Figure 1(left). In both cases, the
+magnitudes of the complex eigenfunctions are large in the vicinity of a band of the
+state space rotating at approximately the same speed. Moreover, the magnitude of
+the eigenfunction shown in Figure 1(left) is relatively constant along the approximately
+rotational trajectories on each wing. The lower row of Figure 5 displays the evolution of
+the argument of the leading eigenfunctions, which passes through a single cycle because
+we have chosen the lowest order of k= 1. Similarly in Figure 1(right), we see a single
+11
+
+
+===== PAGE 12 =====
+cycle corresponding to a single loop around each wing of the Lorenz attractor.Thus, the
+leading complex eigendata provides complete information on the various speeds or periods
+of rotational motion and the parts of the state space where that motion occurs.
+Asε→0, Theorem 2.8 states that we obtain a limiting orthonormal basis of eigenfunc-
+tions{F(ℓ)
+k}ℓ=1,...,33;k∈Z , and that the limiting eigenvectors f(ℓ)
+khave supports restricted to
+one of the three bands. This support restriction is already evident in Figure 4(right) and
+Figure 5 whenε= 0.1.
+To analyse a general dynamical system, including e.g. the Lorenz system in Section 1,
+one would:
+(1)Construct a numerical estimate of the transfer or Koopman operator that is
+consistent with convolving the true operator with small noise, so that our theoretical
+findings should apply. There are many such approaches, for example, Ulam’s
+method [ 28,19,12], direct addition of noise or kernel convolutions [ 7,16,4], local
+kernel evaluations [ 29,10] etc. In the Lorenz example in Figure 1 we used the
+simple kernel-based Markov chain approach in [10].
+(2)Compute the largest-magnitude eigenvalues of the transfer or Koopman operator
+estimate, and identify the largest-magnitude complex eigenvalues that correspond
+to the primary ( k=±1) complex eigenfunctions for each cycle. These will often
+correspond to the complex eigenvalues of largest magnitude and their eigenfunctions
+will by definition have the least oscillatory phases. In the Lorenz example in Figure
+1 this was the second-largest-magnitude eigenvalue after the eigenvalue 1.
+(3)The argument of a complex eigenvalue provides an estimate of the corresponding
+cycle period (Part 2 of Proposition 2.3). If a single application of the transfer
+operator corresponds to evolution for τunits of time and the argument of the
+primary complex eigenvalue is 2πα, then the period of the cycle isτ/α.
+(4)The argument of the corresponding complex eigenfunction describes motion around
+the cycle. In particular, isocontours of the eigenfunction argument correspond to
+the same phase of the cycle (Part 1 of Proposition 2.3); see Figure 1(right) for the
+Lorenz example.
+(5)The identified cycle is approximately localised in the support of the corresponding
+eigenfunction (Part 2(b) of Theorem 2.8). In Figure 1(left), the darker blue
+indicates a stronger match of cycle period. Our linear response results in the
+following subsection state that this localisation is robust to small changes in the
+noise level provided the noise described by ˙Wis local in phase space (see Remark
+4.8).
+2.4.Quadratic and linear response.Proposition 2.3 tells us that for each Fourier
+index k∈Z , in the ε→0 limit the eigenvalues λ(ℓ)
+k,ε,ℓ= 1, . . . , N ofPεeach converge
+toe−2πikα ℓ, while Theorem 2.8 says that the eigenprojections Π(ℓ)
+k,εassociated with the
+eigenfunctions F(ℓ)
+k,εofPεconverge to L2-orthogonal projections Π(ℓ)
+kontospan{F(ℓ)
+k}which
+have explicit eigenfunction characterisations and support localisations. A fundamental
+question arising from these results is the rate of convergence of Π(ℓ)
+k,εandλ(ℓ)
+k,εasε→0. If
+allαℓare distinct, one may hope that the corresponding one-dimensional eigenprojections
+Π(ℓ)
+k,εare regular functions of εatε= 0. On the other hand, if we have nontrivial bands –
+i.e.S < N in Definition 2.4 – then we would expect at best regular dependence of the
+various Ls-dimensional eigenspaces, corresponding to the Lsrepeated eigenvalues e−2πikβ s,
+atε= 0. Surprisingly, in the nontrivially banded situation, we can in fact demonstrate
+quadratic response ofall individual eigenvalues ε7→λ(ℓ)
+k,εatε= 0, and linear response
+12
+
+
+===== PAGE 13 =====
+ofall individual eigenprojections ε7→ Π(ℓ)
+k,εatε= 0. To further illustrate why this is
+surprising, we recall that the standard approach to establishing linear response of the
+eigenprojections is to differentiate the equation PεΠ(ℓ)
+k,ε=λ(ℓ)
+k,εΠ(ℓ)
+k,εwith respect to ε, where
+we use the notation ˙ to denote∂
+∂ε. This differentiation yields the identity
+Pε˙Π(ℓ)
+k,ε+˙PεΠ(ℓ)
+k,ε=˙λ(ℓ)
+k,εΠ(ℓ)
+k,ε+λ(ℓ)
+k,ε˙Π(ℓ)
+k,ε,
+which can be rewritten as
+˙Π(ℓ)
+k,ε=−
+Pε−λ(ℓ)
+k,ε−1
+˙Pε−˙λ(ℓ)
+k,ε
+Π(ℓ)
+k,ε.(12)
+A common strategy is to evaluate equation (12)atε= 0. However, in our setting, this
+approach fails because the range of the operator
+lim
+ε→0
+˙Pε−˙λ(ℓ)
+k,ε
+Π(ℓ)
+k,ε
+ε=0
+lies outside the domain of ( Pε−λ(ℓ)
+k,ε)−1. To overcome this difficulty, we use a non-trivial
+cancellation mechanism specific to our framework. This allows us to obtain explicit
+expressions for the response terms for both the eigenvalues and eigenprojections.
+Further, we observe numerically (for example as in Figure 6(right)) that the form of
+the response of the eigenfunctions ˙F(ℓ)
+kis such that the overall shape of the envelope of
+F(ℓ)
+k,εis relatively unchanged by modestly increasing εfrom 0. Practically, this observation
+helps to explain the robustness of dominant complex eigenfunctions to various types of
+noise, whether they arise from models, data, or numerical techniques.
+The following theorem refines Theorem 2.8 by stating the linear response of the
+eigenprojections, in addition to the linear and quadratic responses of the eigenvalues of
+Pεasε→0.
+Theorem 2.10.Under the hypotheses and notation of Theorem 2.8, there exist complex
+numbers ˆλ(1)
+k, . . . , ˆλ(N)
+k,ˆˆλ(1)
+k, . . . ,ˆˆλ(N)
+kand functions
+f(1)
+k, . . . , f(N)
+k,ˆf(1)
+k, . . . , ˆf(N)
+k:{1, . . . , N} →C,
+such that
+λ(ℓ)
+k,ε=e−2πikα ℓ+εˆλ(ℓ)
+k+ε2ˆˆλ(ℓ)
+k+O(ε2),(13)
+and
+Π(ℓ)
+k,ε(·) = Π(ℓ)
+k(·) +εD
+·, F(ℓ)
+kE
+ˆF(ℓ)
+k+D
+·,ˆF(ℓ)
+kE
+F(ℓ)
+k
++O(ε),(14)
+where F(ℓ)
+k(j, x) =f(ℓ)(j)e2πikxandˆFℓ
+k(j, x) := ˆfk(j)e2πikx. Also, ⟨F(ℓ)
+k,ˆF(ℓ)
+k⟩= 0, the term
+O(ε2)∈Cin(13) satisfies O(ε2)/ε2ε→0− − → 0and the term O(ε) :L2(M)→L2(M)in(14)
+is a finite-rank operator such that∥O(ε)∥/εε→0− − →0.
+Moreover, explicit formulae for these quantities can be found as follows:
+(1) IfS= 1(one band, all fibres rotate at the same speed) ork= 0:
+(a)ˆλ(ℓ)
+kandf(ℓ)
+kare, respectively, the eigenvalues and eigenvectors ofe2πikα 1˙W;
+(b)ˆˆλ(ℓ)
+k= 0and ˆf(ℓ)
+k= 0;and
+(c)the functions O(ε2)in(13) andO(ε)in(14) are identically equal to0(defined
+in Proposition 3.7).
+(2) IfS >1(multiple bands) andk̸= 0:
+(a)ˆλ(ℓ)
+kandf(ℓ)
+kare, respectively, the eigenvalues and eigenvectors of ˆPk,β,L (see
+(10)). Moreover,arg( ˆλ(ℓ)
+k) = arg(λ(ℓ)
+k) +πif ˆλ(ℓ)
+k̸= 0.
+13
+
+
+===== PAGE 14 =====
+Figure 6.Left:The small coloured disks indicate the response of the spectrum
+ˆλ(ℓ)
+1,ℓ= 1, . . . , 33 of the 33 ×33 matrix ˆP1,β,L, associated to the model from Figure
+1, where β= (π/20, e/7,1/√
+2) and L= (11 ,7,15). Note that the responses of
+the 33 eigenvalues are grouped along three rays with Liresponses on a ray with
+angle 2 πβi+πfori= 1,2,3. The dashed lines and disk colouring are identical
+to those in Figure 4(left).Right:Plot of |ˆf(ℓ)
+1(j)|vs lattice index jforℓ= 1,2,4,
+where the ordering of the eigenvalues ˆλ(ℓ)
+1are shown in the left panels of this
+figure and Figure 4. The three response vectors have been normalised to have
+unit norm and correspond to the three eigenvectors displayed in Figure 4(right).
+(b)ˆf(ℓ)
+kis computed in Theorem 4.5; and
+(c)ˆˆλ(ℓ)
+kis provided in Theorem 5.2.
+Example 2.11(Response of eigenvalues and eigenfunctions atε= 0).We continue our
+example whereW εis given by (1),β= (π/20, e/7,1/√
+2), andL= (11,7,15).
+Eigenvalue response:For small εthe eigenvalues have a quadratic response by Theorem
+2.10, with the linear response given explicitly in Proposition 7.1. Figure 6(left) shows
+the response of the 33 eigenvalues displayed in Figure 4(left). As stated in Theorem
+2.10(2)(a) and seen explicitly in Proposition 7.1, the eigenvalues are altered in magnitude
+only, with the argument remaining fixed at 2 π-integer multiples of the rotation speeds.
+Figure 6(left) demonstrates that the eigenvalues indeed move along the rays they lie on,
+decreasing their magnitude. Those farthest from the unit circle have the greatest response.
+In summary,the argument of the eigenvalues is incredibly robust to the noise level ε, which
+for practical purposes means that eigenvalues of the transfer operator are robust indicators
+of the periods of almost-cycles.
+Eigenfunction response:Turning now to the response of the eigenvectors, in Figure
+6(right) we plot the magnitudes of responses of the three eigenvectors shown in Figure
+4(right). In Figure 6(right) we can see that the responses are separately restricted to each
+of the three bands, and that the envelopes of the magnitudes are almost identical to those
+in Figure 4(right). Remark 4.8 provides a theoretical explanation for the observed support
+restriction. Therefore, as in the case of the eigenvalues, these eigenvectors, and therefore
+the eigenfunctions of the transfer operator Pε, are extremely robust to the noise level ε,
+making them reliable indicators of the supports of distinct almost-cyclic sets in the state
+space of the dynamics.
+2.5.Linear response with respect to the band vectors.In this section, we describe
+the linear response with respect to the rotation speed vector α∈RN. To emphasise the α
+dependence on the operatorP εwe write it asP ε,α.
+14
+
+
+===== PAGE 15 =====
+2.5.1.The case of ε= 0.For ε= 0, linear response with respect to the band vectors
+holds when S=N(all circular fibres rotate with distinct speeds) or k= 0, and fails when
+S̸=Nandk̸= 0.
+Proposition 2.12.Fix k∈Z andℓ∈ { 1, . . . , N} . For ε > 0letΠ(ℓ)
+ε,α,kdenote the
+L2-orthogonal projection onto span{F k,ε,α}, where Fk,ε,αis defined in (15). Whenever the
+limit exists, setΠ(ℓ)
+k,α:= lim ε→0Π(ℓ)
+ε,α,k.Then:
+(i)Ifα∈RNisN-banded (all circular fibres rotate at distinct speeds), the map
+α7→ Π(ℓ)
+k,αis locally constant in a neighbourhood of α. In particular,∂
+∂αΠ(ℓ)
+k,α= 0
+at every N-banded vector α. The same conclusion holds when k= 0and αis
+S-banded for any1≤S≤N.
+(ii)Ifα∈RNisS-banded for some1 ≤S < N andk̸= 0, then the map υ7→ Π(ℓ)
+k,υis
+discontinuous in a neighbourhood ofα. Consequently, linear response fails atα.
+Proof.
+(i)Assume that αisN-banded. By Theorem 2.8 (2), Π(ℓ)
+k,αexists and is the L2-
+orthogonal projection onto span{F(ℓ)
+k,α}, where F(ℓ)
+k,α(j, x) =1 {ℓ}(j)e2πikx.In par-
+ticular, for N-banded parameters the range of Π(ℓ)
+k,αis generated by a function
+that does not depend on α. Hence Π(ℓ)
+k,αitself is constant on the set of N-banded
+vectors. Since the set of N-banded vectors is open in RN, the map α7→ Π(ℓ)
+k,αis
+locally constant at α, and therefore its derivative with respect to αvanishes there.
+The casek= 0 is analogous.
+(ii)Letk̸= 0 and let αbeS-banded with 1 ≤S < N . Since the set of N-banded
+vectors is dense inRN, there exists a sequence (υ n)n≥1ofN-banded vectors such
+that υn→α. By part (i), each Π(ℓ)
+k,υnequals the L2-orthogonal projection onto
+span{ 1{ℓ}(j)e2πikx}. On the other hand, Theorem 2.8 2(b) implies that at the
+S-banded parameter αthe limiting projection Π(ℓ)
+k,αis not given by this same
+projection. Therefore Π(ℓ)
+k,υn̸→Π(ℓ)
+k,α, which proves that υ7→ Π(ℓ)
+k,υis discontinuous
+atα. Discontinuity implies failure of differentiability, so linear response fails at α.
+□
+2.5.2.The case of ε >0.For ε >0 we have a positive result of standard linear response.
+Proposition 2.13.Fix k∈Z ,ε > 0, and α∈RN. Assume that Pε,αhas exactly
+Ndistinct eigenvalues λ(ℓ)
+k,ε,α,ℓ= 1, . . . , N associated with eigenvectors of the form
+Fk,ε,α(x, j) =fk,ε,α(j)e2πikx. Each of these eigenvalues enjoys linear response with respect
+toα. More precisely, there exists an open neighbourhood AαofαinRNsuch that the
+maps
+Uα∋α′7→λ(ℓ)
+k,ε,α′∈CandU α∋α′7→F k,ε,α′(·,·) =f k,ε,α′(·)e2πik·∈ C0(M,C),(15)
+are differentiable. Moreover, one has
+∂
+∂αfk,ε,α= (D k,αWε−λ k,ε,α)−1∂
+∂αDk,αWε−∂
+∂αλk,ε,α
+fk,ε,α.(16)
+Proof.See Section 6.□
+We remark that by Theorem 2.8(1), for sufficiently small εone automatically obtains
+the assumption in Proposition 2.13 thatP ε,αhas exactlyNeigenvalues.
+15
+
+
+===== PAGE 16 =====
+3.Proofs of Proposition 2.3, Theorem 2.8(a), Theorem 2.8(2)(a), and
+Theorem 2.10(1)
+3.1.Proof of Proposition 2.3.We start by proving results that are valid for any
+α∈RN. In future sections, we restrict our analysis to the vectorαbeing anS-band.
+3.1.1.Proof of Proposition 2.3(1).Lemma 3.1 asserts that eigenfunctions of Pεcorre-
+sponding to a fixed Fourier index ktake the form of a harmonic function defined along
+each circular fibre, modulated by a function that is solely dependent on the fibres. Recall
+thatD k,αis defined in (6).
+Lemma 3.1.A function F∈L2(M)is a generalised eigenfunction of Pεwith eigenvalue
+λif and only if F(j, x) =f k(j)e2πikxfor some k∈Z , where (identifying the function fk
+with the vector( fk(1), . . . , f k(N))∈CN)fkis a generalised eigenvector of Dk,αWεwith
+eigenvalueλ.
+Proof.Givenf∈L2(M), by employing Fourier series, we can express
+F(j, x) =X
+k∈Zfk(j)e2πikx,wheref k:{1, . . . , N} →C.(17)
+By (2) and (4) withδ= 0 for every (j, x)∈M
+PεF(j, x) =X
+k∈ZPε
+fk(·)e2πik·
+(j, x)
+=X
+k∈Ze−2πikα j(Wεfk)je2πikx.(18)
+Suppose that PεF=λF. By equating individual Fourier mode coefficients in (18)we
+obtain Dk,αWεfk=λfk. Similarly, if Dk,αWεfk=λfkholds, the ansatz (17)provides an
+eigenfunction Fwith eigenvalue λ. The case where Fis a generalised eigenfunction of F
+follows similarly.□
+3.1.2.Proof of Proposition 2.3(2).
+Lemma 3.2.Given k∈Z , let{λ(1)
+k,ε, . . . , λ(N)
+k,ε}:=σ(D k,αWε). Then, after properly
+relabelling the elements ofσ(D k,αWε), it follows that for everyε >0sufficiently small
+λ(ℓ)
+k,ε−e−2πikα ℓ≤2 max
+1≤r≤N(1−W ε,r,r)for everyℓ∈ {1, . . . , N},
+andarg
+λ(ℓ)
+k,ε
++ 2πikα ℓ(mod 2π)≤2πmax
+1≤r≤N(1−W ε,r,r)for everyℓ∈ {1, . . . , N}.
+Proof.For eachℓ∈ {1, . . . , N}, consider the Gershgorin disks
+∆ℓ:=(
+z∈C:|z−(D k,αWε)ℓℓ| ≤X
+ℓ′̸=ℓ|(Dk,αWε)ℓℓ′|)
+.
+SinceD k,αis diagonal, for allℓ, ℓ′,
+(Dk,αWε)ℓℓ′= (D k,α)ℓℓWε,ℓ,ℓ′=e−2πikα ℓWε,ℓ,ℓ′.
+HenceP
+ℓ′̸=ℓ|(Dk,αWε)ℓℓ′|=P
+ℓ′̸=ℓWε,ℓ,ℓ′= 1−W ε,ℓ,ℓ. Therefore
+∆ℓ=
+z∈C:z−e−2πikα ℓWε,ℓ,ℓ≤1−W ε,ℓ,ℓ	
+16
+
+
+===== PAGE 17 =====
+⊂
+z∈C:z−e−2πikα ℓ≤2 max
+1≤r≤N(1−W ε,r,r)
+=:e∆ℓ.
+Take ε0>0 sufficiently small such that the number of connected components ofSN
+ℓ=1e∆ℓ
+is constant for every 0 < ε < ε 0. By the Gershgorin circle theorem [ 17, Theorem 6.11],
+after relabelling the eigenvalues we obtainλ(ℓ)
+k,ε−e−2πikα ℓ≤2 max
+1≤r≤N(1−W ε,r,r) for everyℓ∈ {1, . . . , N},
+which proves the first inequality.
+We now prove the second inequality. Fix ℓ∈ { 1, . . . , N} . By the reverse triangle
+inequality,1−λ(ℓ)
+k,ε=e−2πikα ℓ−λ(ℓ)
+k,ε≤λ(ℓ)
+k,ε−e−2πikα ℓ.(19)
+Then, by the triangle inequality and (19),
+eiarg(λ(ℓ)
+k,ε)−e−2πikα ℓ=λ(ℓ)
+k,ελ(ℓ)
+k,ε−e−2πikα ℓ≤λ(ℓ)
+k,ελ(ℓ)
+k,ε−λ(ℓ)
+k,ε+λ(ℓ)
+k,ε−e−2πikα ℓ
+=1−λ(ℓ)
+k,ε+λ(ℓ)
+k,ε−e−2πikα ℓ≤2λ(ℓ)
+k,ε−e−2πikα ℓ
+≤4 max
+1≤r≤N(1−W ε,r,r).
+Finally, let ∆ :=arg(λ(ℓ)
+k,ε)−(−2πkα ℓ) (mod 2π)∈[0, π] be the smallest angular distance
+between arg(λ(ℓ)
+k,ε) and−2πikα ℓ. On the unit circle,
+eiarg(λ(ℓ)
+k,ε)−e−2πikα ℓ= 2 sin(∆/2)≥2
+π∆,
+and thereforearg(λ(ℓ)
+k,ε)−(−2πkα ℓ) (mod 2π)= ∆≤π
+2eiarg(λ(ℓ)
+k,ε)−e−2πikα ℓ≤2πmax
+1≤r≤N(1−W ε,r,r).
+□
+3.2.Distinct eigenvalues of Pεfor small ε > 0.The proofs of Theorem 2.8(1),
+Theorem 2.8(2)(i), and Theorem 2.10(1) all rely on the eigenspaces of Pεbeing one-
+dimensional. Recalling the correspondence between the spectrum of PεandDk,αWε
+established in Lemma 3.1, we adopt the following simplified notation in this and all
+subsequent sections. Fixingβ,L, andk∈Z, for everyε >0 we write
+Dβ:=D k,β,LandP ε,β:=D βWε.(20)
+Forv, w∈CNwe denote the inner product between vandwas⟨v, w⟩ =PN
+j=1vjwj, and
+for everys∈ {1, . . . , N}we set
+Vs:={v∈CN:vj= 0 ifj≤N s−1orj > N s}
+={v∈CN:vj= 0 for everyj∈ {1, . . . , N} \B s}.(21)
+The following three results establish that for every β∈Γ the matrix Pε,βis diagonalizable
+for everyε >0 sufficiently small.
+Theorem 3.3.Under the hypotheses of Theorem 2.8 there exists γk>0such that for
+every0< ε < γ kthe matrixP ε,βhasNdistinct eigenvalues.
+17
+
+
+===== PAGE 18 =====
+Before proving the above theorem, we establish three preparatory lemmas.
+Lemma 3.4.Fix s∈ { 1, . . . , S}. For each ε >0choose a sequence of unit-norm vectors
+{fε}ε>0⊂CNsuch that for everyε >0,
+Pε,βfε=λ εfεandλ εε→0− − →e−2πikβ s.
+Then,(f ε)jε→0− − →0for everyj∈ {1, . . . , N} \B s.
+Proof. Since∥fε∥= 1 and for every εsmall enough there exists a converging subsequence
+{fεr}r∈N⊂ {f ε}ε>0such thatf εrεr→0− − − →f ∗. It follows that
+Dβf∗= lim
+k→∞DβWεrfεr=λ εrfεr=e−2πikβ sf∗and therefore
+Dβ−e−2πikβ s
+f∗= 0.
+Observe that for eachj∈B tfor somet∈ {1, . . . , N}we obtain that
+
+e−2πikβ t−e−2πikβ s
+(f∗)j= 0
+Since β∈Γ, then min t̸=s|e−2πikβ s1−e−2πikβ s2|>0 which implies that f∗= 0 for every
+j∈ { 1, . . . , N} \B s.Hence, for every subsequence of {fε}ε>0, it is possible to construct
+a subsubsequence such that all coordinates j∈ { 1, . . . , N} \B sconverge to 0 as ε→0,
+which implies the desired result.□
+Lemma 3.5.Assume that there exist vectorsf, g∈CN,β∈RSandε >0such that
+Pε,βf=λfandP ε,βg=λg+f.
+Then,⟨f, D βf⟩= 0.
+Proof. Since Pε,βg=λg+f, then DβWεg=λg+f. Therefore Wεg=λDβg+Dβf.
+Hence,
+⟨f, D βg⟩=1
+λ⟨Pε,βf, D βg⟩=1
+λ⟨DβWεf, D βg⟩=1
+λ⟨f, W εg⟩
+=1
+λ⟨f,λDβg+D βf⟩=⟨f, D βg⟩+1
+λ⟨f, D βf⟩.
+Thus,⟨f, D βf⟩= 0.□
+Lemma 3.6.Let β∈RSand{fε}ε>0⊂CNbe a sequence of unit-norm vectors such that
+for everyε >0small
+Pε,βfε=λ εfεandλ εε→0− − →e−2πikβ sfor somes∈ {1, . . . , S}.
+Then, the accumulation points of {fε}ε>0asε→0are eigenvectors of the matrix ˆPk,β,L
+(defined in 10).
+Proof. Consider a converging subsequence {fεr}r∈N⊂ {f ε}ε>0such that fεrεr→0− − − →f ∗.
+From Lemma 3.2, we can choose a subsubsequence{ε′
+r}r′∈N⊂ {ε r}r∈Nsuch that
+λε′r−e−2πikβ s
+ε′
+rε′
+r→0− − − →λ ∗.
+Moreover, from Lemma 3.4 we have thatf ∗∈Vs(see (21)). Since
+λεfε=P ε,βfε=D βWεfε=D β
+Id +ε ˙W
+fε.
+18
+
+
+===== PAGE 19 =====
+We obtain that ˙Wfε=1
+ε(λεDk,−β,L fε−fε)for each ε > 0.Letπs:CN→V sthe
+orthogonal projection fromCNintoV s. It follows that
+πs˙Wfε=1
+επs(λεDk,−β,L fε−fε) =e2πikβ sλε−1
+επsfε.
+By taking ε′
+r→0 and observing that πsf∗=f∗,we obtain that πs˙Wf∗=λ∗f∗.Thus,
+ˆWLf∗=λ∗f∗(see (11)). Therefore, we obtain that
+ˆPk,β,Lf∗=D βˆWLf∗=e2πikβ sλ∗f∗.
+□
+Proof of Theorem 3.3. Assume for a contradiction that for every ε0>0 there exists 0 <
+ε < ε 0such that DβWεdoes not have Ndistinct eigenvalues. Then, there exists a sequence
+of real numbers εn− →0, as n→ ∞, and sequences of vectors {fεn}n∈N,{gεn}n∈N⊂CN
+such that for everyn∈None has∥f εn∥= 1 and either
+(1)P ε,βgεn=λ εgεn+fεn, or
+(2)f εnandg εnare linearly independent and
+Pεn,βfεn=λ εnfεnandP εn,βgεn=λ εngεn.
+We first consider scenario (1). By passing through a subsequence, if necessary, we can
+assume that there existsf ∗andλ ∗such that
+fεnn→∞− − − →f ∗andλ εnn→∞− − − →e−2πikβ sfor somes∈ {1, . . . , S}.
+From Lemmas 3.4, 3.5 and 3.6 respectively, we obtain that
+(a)f ∗∈Vs(see (21)) for somes∈ {1, . . . , S};
+(b)⟨f ∗, Dβf∗⟩= lim n→∞⟨fεn, Dβfεn⟩= 0;
+(c)f ∗is an eigenvector of ˆPk,β,L.
+From the block structure of ˆPk,β,L we have that f∗that is an eigenvector of ˆWL(see
+(11)). Since f∗∈Vsand all the blocks of ˆWLare symmetric real matrices with distinct
+(real) eigenvalues, we obtain that f∗andf∗are linearly dependent, which implies that
+⟨f∗, Dβf∗⟩ ̸= 0, contradicting item (b) above.
+Now we assume (2). Define
+hεn:=1
+∥gεn− ⟨g εn, fεn⟩fεn∥(gεn− ⟨g εn, fεn⟩fεn).
+By passing, if necessary, through a subsequence, we can assumef ∗, h∗∈CNthat
+fεnn→∞− − − →f ∗, hεnn→∞− − − →h ∗andλεn−e−2πikβ s
+εnn→∞− − − →λ ∗for somes∈ {1, . . . , S}.
+From Lemma 3.4 we have that f∗, h∗∈Vs\ {0}and by construction ⟨f∗, h∗⟩= 0. From
+Lemma 3.6 we obtain that
+ˆPk,β,Lf∗=λ∗f∗and ˆPk,β,Lh∗=λ∗h∗,
+and therefore
+πsˆWLf∗=e2πkβ sλ∗f∗andπ sˆWLh∗=e2πkβ sλ∗h∗,(22)
+where πs:CN→V sis theCN-orthogonal projection onto Vs. Since Wεis an L-admissible
+family of matrices, Definition 2.6(3) implies that πsˆWL:Vs→V shasNdistinct eigenvalues,
+which contradicts (22) since⟨f ∗, h∗⟩= 0.□
+19
+
+
+===== PAGE 20 =====
+3.3.Proof of Theorem 2.8(2)(a)and Theorem 2.10(1).
+Proposition 3.7.Under the assumptions and notation of Theorem 2.8, if either S= 1
+ork= 0, then for eachℓ∈ {1, . . . , N},
+λ(ℓ)
+k,ε=e−2πikβ 1+εˆλ(ℓ)
+kandF(ℓ)
+k,ε(j, x) =f(ℓ)
+k(j)e2πikx.
+Moreover, {f(1)
+k, . . . , f(N)
+k}is an orthonormal basis of e−2πikα 1˙W, and for each ℓ∈
+{1, . . . , N} ,ˆλ(ℓ)
+kis an eigenvalue of e−2πikα 1˙Wassociated with f(ℓ)
+k. In particular,Π(ℓ)
+k,ε=
+Π(ℓ)
+kfor every ε >0,whereΠ(ℓ)
+kis the L2-orthogonal projection onto span{F(ℓ)
+k}, where
+F(j, x) =f(ℓ)
+k(j)e2πikx.
+Proof. From Lemma 3.1 it follows that PεFε=λεFεif and only if F(j, x) =f(j)e2πikxand
+DβWεfε=λεfε.Since either S= 1 or k= 0 we obtain that Dβ=e−2πikβ 1IdN.Therefore
+DβWε=e−2πikβ 1Wε=e−2πikβ 1
+IdN+ε˙W
+.
+Since eitherS= 1 ork= 0 we obtain thate−2πikβ 1(IdN+ε˙W)f ε=λ εfεif and only if
+e−2πikα 1˙Wfε=λε−e−2πikβ 1
+εfε.
+Hence, for everyℓ∈ {1, . . . , N}
+λ(ℓ)
+k,ε=e−2πikβ 1+εˆλ(ℓ)andf(ℓ)
+k,ε=f(ℓ)
+k.
+Observe that f(ℓ)
+kis an orthonormal basis since Wεis an L-admissible family of matrices.
+□
+4.Proof of Theorem 2.8(2)( b)and Theorem 2.10: Linear component of(15)
+and Part (2)(b)
+To simplify notation we fix from now on N, S∈N with 1 < S≤N , a cluster length
+vector L∈RS, anL-admissible family of matrices Wε=Id+ε˙W, and k∈N . Moreover,
+given a function h:{1, . . . , N} →C, we denote ( h)j:=h(j) for every j∈ { 1, . . . , N}, and
+we make no distinction between the vector (( h)1, . . . , (h)N) and the function h. Finally,
+we say (h) j= 0 ifh(j) is undefined, i.e. whenj∈Z\ {1, . . . , N}.
+Below, we recall the definition of the complex projective space CPN−1which is used
+throughout the rest of the proofs of Theorems 2.8 and 2.10.
+Definition 4.1(Complex Projective Space).GivenN∈N, we denote
+CPN−1=CN\ {0}/∼,
+where∼is the equivalence relation inCN\ {0}
+v∼wif and only ifv=λwfor someλ∈C.
+We induce a differential structure inCPNvia the quotient map
+π:Cn\ {0} →CPN
+v7→[v]
+where [ v]∈Cnis the equivalence class of vin∼(see [ 22, Chapter 1, page 31]). Given
+w, v∈CPN−1we define the distance betweenwandvinCPN−1as
+distCPN−1(v, w) = min
+θ∈[0,2π)
+
+
+
+v
+∥v∥−eiθw
+∥w∥
+
+
+
+.
+20
+
+
+===== PAGE 21 =====
+Theorem 4.2.Let β∈Γ, for each ε >0small enough, let {f(ℓ)
+ε}N
+ℓ=1⊂CNdenote a
+unit-norm eigenbasis ofP ε,β. Then,
+(i)there exists an orthonormal eigenbasis{f(1), . . . , f(N)} ⊂CNof
+ˆPβ:=D βˆWL,
+where ˆWLis defined in (11) andDβin(20), such that for every j∈ { 1, . . . , N},
+one has
+[f(ℓ)
+ε]ε→0− − →[f(ℓ)]inCPN−1for everyℓ∈ {1, . . . , N}.(23)
+(ii)Fors∈ { 1, . . . , N} andℓ∈B s, letˆλ(ℓ)be the eigenvalue associated to the eigen-
+vectorf(ℓ)ofˆPβ. Then
+λ(ℓ)
+ε=e−2πikβ s+εˆλ(ℓ)+O(ε).(24)
+Moreover,arg( ˆλ(ℓ)) = arg(λ(ℓ)) +πif| ˆλ(ℓ)|>0.
+4.1.Proof of Theorem 4.2.The proof of Theorem 4.2 is lengthy, so we establish
+two preparatory lemmas before the proof. For every ε > 0 small enough we write
+{f(ℓ)
+ε}N
+ℓ=1⊂CNas a unit-norm eigenbasis of Pε,β, and by appealing to standard matrix
+perturbation theory [ 18, Chapter Two§1] we obtain that for every ℓ∈ { 1, . . . , N}, the
+map
+ε∈(0, γ k)7→f(ℓ)
+ε∈CN
+isC∞. We defineλ(ℓ)
+εas the eigenvalue associated to the eigenvectorf(ℓ)
+ε. Recall that
+λ(ℓ)
+ε→e−2πikβ sifℓ∈B sasε→0.
+We mention that standard perturbation theory asserts [ 18, Chapter Two§1] that the
+above map ε∈(0, γk)7→λ(ℓ)
+ε∈C isC∞. Finally, for every ℓ∈ { 1, . . . , N}, Π(ℓ)
+ε:
+L2(M)→span{F(ℓ)
+ε}denotes the L2-orthogonal projection onto the span{F(ℓ)
+ε}where
+Fε(j, x) :=f(ℓ)
+εe2πikx.
+Lemma 4.3.Let1 ≤ℓ̸=m≤N , then ⟨f(ℓ)
+ε, Dβf(m)
+ε⟩= 0for every ℓ̸=mandε >0
+small.
+Proof. From Lemma 3.2 λ(ℓ)
+ε̸= 0 for every ℓ∈ { 1, . . . , N} andε >0 sufficiently small.
+Observe that
+⟨f(ℓ)
+ε, Dβf(m)
+ε⟩=1
+λ(ℓ)
+ε⟨Pε,βf(ℓ)
+ε, Dβf(m)
+ε⟩=1
+λ(ℓ)
+ε⟨DβWεf(ℓ)
+ε, Dβf(m)
+ε⟩
+=1
+λ(ℓ)
+ε⟨Wεf(ℓ)
+ε,f(m)
+ε⟩=1
+λ(ℓ)
+ε⟨f(ℓ)
+ε, Wεf(m)
+ε⟩.(25)
+Since DβWεf(m)
+ε=λ(m)
+εf(m)
+ε, it follows that Wεf(m)
+ε=λ(m)
+εD−βf(m)
+εand therefore
+Wεf(m)
+ε=λ(m)
+εDβf(m)
+ε. Combining the last equality with (25), we obtain
+⟨f(ℓ)
+ε, Dβf(m)
+ε⟩=1
+λ(ℓ)
+ε⟨f(ℓ)
+ε, Wεf(m)
+ε⟩=1
+λ(ℓ)
+ε⟨f(ℓ)
+ε,λ(m)
+εDβf(m)
+ε⟩=λ(m)
+ε
+λ(ℓ)
+ε⟨f(ℓ)
+ε, Dβf(m)
+ε⟩.
+Finally, from Theorem 3.3 we obtain that λ(m)
+ε̸=λ(ℓ)
+εwhen ε >0 is small enough. Thus,
+⟨f(ℓ)
+ε, Dβf(m)
+ε⟩= 0.□
+Lemma 4.4.For every1≤ℓ̸=m≤N,lim ε→0⟨f(ℓ)
+ε, f(m)
+ε⟩= 0.
+21
+
+
+===== PAGE 22 =====
+Proof.Lets ℓ, sm∈ {1, . . . , S}such thatℓ∈B sℓandm∈B sm.
+Consider a converging subsequence of {⟨f(ℓ)
+εn, f(m)
+εn⟩}n∈N⊂ {⟨f(ℓ)
+ε, f(m)
+ε⟩}ε>0. By passing
+through a subsequence, if necessary, there exist complex vectorsf(ℓ)
+∗, f(m)
+∗∈CN
+lim
+n→∞f(ℓ)
+εn=f(ℓ)
+∗and lim
+n→∞f(m)
+εn=f(m)
+∗.
+From Lemma 3.6, we have that f(m)
+∗andf(ℓ)
+∗are eigenvectors of the matrix ˆPβ(see
+4.2). Moreover, Lemma 3.4 implies that f(ℓ)
+∗∈V sℓandf(ℓ)
+∗∈V sm. Therefore, f(ℓ)
+∗and
+f(m)
+∗are eigenvectors of the real symmetric matrix ˆWL. Hence, f(m)
+∗=af(m)
+∗for some
+a∈C.Finally, using Lemma 4.3 we obtain that for everym̸=ℓ
+0 = lim
+n→∞e−2πikβ sm
+aD
+f(ℓ)
+εn, Dβf(m)
+εnE
+=e−2πikβ sm
+aD
+f(ℓ)
+∗, Dβf(m)
+∗E
+=⟨f(ℓ)
+∗, f(m)
+∗⟩= lim
+n→∞⟨f(ℓ)
+εn, f(m)
+εn⟩
+which finishes the proof of the lemma.
+□
+With the above results established, we can finally prove Theorem 4.2.
+Proof of Theorem 4.2. We start by establishing (24), which implies the first part of
+(ii). Let ℓ∈ { 1, . . . , N} , from Lemma 3.2 then there exists s∈ { 1, . . . , S} , such that
+λ(ℓ)
+ε→e−2πikβ s.Define πs:CN→V sas the CN-orthogonal projection onto Vs(cf.(21)).
+Observe that
+ˆPβf(ℓ)
+ε=D βˆWLf(ℓ)
+ε=D βˆWLπsf(ℓ)
+ε+D βˆWL(f(ℓ)
+ε−π sf(ℓ)
+ε)
+=1
+ε
+λ(ℓ)
+ε−e−2πikβ s
+πsf(ℓ)
+ε+O
+max
+j∈{1,...,N}\B s|f(ℓ)
+ε(j)|
+,(26)
+where, for a given sequence aε→0, the notation O(aε) denotes a quantity such that
+lim supε→0|O(a ε)|/a ε<∞.
+Assume for a contradiction that the sequence
+1
+ε
+λ(ℓ)
+ε−e−2πikβ s
+ε>0(27)
+does not converge as ε→0. From Lemma 3.2, (27)is bounded for ε >0 small enough.
+Since (27)is bounded and we are assuming that the limit of such a sequence does not
+exist, there exist sequences of real numbers {εn}n∈Nand{ε′
+n}n∈Nand complex numbers
+λ(1)̸=λ (2)∈Csuch that:
+(1)ε n, ε′
+nn→∞− − − →0;
+(2)ε n≤ε′
+n≤εn+1for everyn∈N; and
+(3)1
+εn
+λ(ℓ)
+εn−e−2πikβ s
+n→∞− − − →λ (1)and1
+ε′n
+λℓ
+ε′n−e−2πikβ s
+→λ (2).
+Using that ε∈(0, γk)7→λ(ℓ)
+ε∈Cis continuous we can construct a sequence of real
+numbers{ε′′
+r}r′′∈Nsuch that
+(1)ε n≤ε′′
+n≤ε′
+nfor everyn∈N;
+(2)1
+ε′′n
+λℓ
+ε′′n−e−2πikβ s
+n→∞− − − →λ (3)̸∈σ(D βˆWL); and
+(3)f(ℓ)
+ε′′n→f∗∈Vswith∥f∗∥2= 1.
+22
+
+
+===== PAGE 23 =====
+Taking the limitε′′
+r→0 in (26) we obtain that
+DβˆWLf∗=ˆPβf∗= lim
+ε′′r→0ˆPβf(ℓ)
+ε′′r
+= lim
+ε′′r→01
+ε′′
+r
+λ(ℓ)
+ε′′r−e−2πikβ s
+πsf(ℓ)
+ε′′r+O
+max
+j∈{1,...,N}\B s|f(ℓ)
+ε′′r(j)|
+=λ (3)f∗+ 0 =λ (3)f∗.
+Since λ(3)̸∈σ(DβˆWL) this yields a contradiction, thereforen
+1
+ε
+λ(ℓ)
+ε−e−2πikβ so
+ε>0must
+converge to an eigenvalue ˆλ(ℓ)ofD βˆWL.We thus conclude that (24) holds.
+In the following we show ( i). Recall that from the assumption imposed on ˆWL(see
+Definition 2.6 (3)) that ˆPβ=DβˆWLadmits Ls= #Bsdistinct eigenvalues lying in Vs
+and that ℓ∈B s. From (26)and Lemma 3.4 it is clear that all the accumulation points of
+{f(ℓ)
+ε}ε>0lie in the one-dimensional complex vector space ker(ˆPβ−ˆλ(ℓ))∩Vs. Choosing
+f(ℓ)∈Vs\ {0}such that ˆPβf(ℓ)=λ(ℓ)f(ℓ)we have that [ f(ℓ)
+ε]ε→0− − → [f(ℓ)] inCPN−1. Since
+ˆPβhas # Bsdifferent eigenvectors lying in Vs, using Lemma 4.4 we obtain that {f(ℓ′)}ℓ′∈Bs
+is an orthonormal basis of Vs. Observing that CN=V1⊕. . .⊕V Sand repeating the same
+argumentation presented in this paragraph for every for every s′∈ {1, . . . , S} we obtain
+that{f(1), . . . , f(N)}is an orthonormal basis ofCN, which concludes the proof of (i).
+Finally, we show the second part of ( ii), i.e. we show that arg(ˆλ(ℓ)) =arg(λ(ℓ)) +π
+for every ℓ∈ { 1, . . . , N} ifλ(ℓ)̸= 0. Since ˆPβ=DβˆWLis a block matrix, there exists
+s∈ { 1, . . . , S} such that λ(ℓ)is also an eigenvalue of the Ls×L smatrix e−2πikβ sˆWs. In
+this way, λ(ℓ)=e−2πikβ sρswhere ρs∈Ris an eigenvalue of the real symmetric matrix ˆWs.
+From Definition 2.6 (1), all the diagonal entries of ˆWsare negative real numbers and the
+sum of each row is non-positive. As a consequence of the Gershgorin circle theorem [ 17,
+Theorem 6.11], we obtain that all eigenvalues of ˆWsare non-positive, i.e. ρs≤0. Hence,
+the complex argument of ˆλ(ℓ)=e−2πikβ sρsis equal to −2πkβ s+π(mod 2π), as long as
+ˆλ(ℓ)̸= 0. □
+The following theorem discusses the linear response of the eigenprojections Π(ℓ)
+k,ε.
+Theorem 4.5.Let ℓ∈ { 1, . . . , N} ,sℓ∈ {1, . . . , S} such that ℓ∈B sℓandβ∈Γ. For
+eachε >0small enough, consider {f(1)
+ε, . . . , f(N)
+ε}and{f(1), . . . , f(N)}as in Theorem 4.2.
+Then,
+(i)there exist vectors ˆf(1), . . . , ˆf(N)∈CN,so that
+
+f(ℓ)
+ε
+=h
+f(ℓ)+εˆf(ℓ)+O(ε)i
+for everyℓ∈ {1, . . . , N},
+where
+ˆf(ℓ)=SX
+s=1,s̸=s ℓ
+X
+r∈Bsℓ\{ℓ}1
+ˆλ(ℓ)−ˆλ(r)1
+e−2πikβ s−e−2πikβ sℓD
+πsDβ˙Wf(ℓ), πs˙WD−βf(r)E
+f(r)
++X
+r∈Bs1
+e−2πikβ s−e−2πikβ sℓD
+Dβ˙Wf(ℓ), f(r)E
+f(r)!
+.(28)
+andπ s:CN→V sis theCN-orthogonal projection ontoV s.
+(ii)Moreover,
+Π(ℓ)
+ε= Π(ℓ)+ε
+·, F(ℓ)ˆF(ℓ)+D
+·,ˆF(ℓ)E
+F(ℓ)
++O(ε),
+23
+
+
+===== PAGE 24 =====
+whereF(ℓ)(j, x) =f(ℓ)(j)e2πikxand ˆFℓ(j, x) := ˆfℓ(j)e2πikx.
+(iii) Finally, ⟨F(ℓ)
+k,ˆF(ℓ)
+k⟩= 0and the term O(ε) :L2(M)→L2(M)in(14) is a finite-
+rank operator such that∥O(ε)∥/εε→0− − →0.
+4.2.Proof of Theorem 4.5.To prove the above theorem, we first establish four prelim-
+inary results.
+Proposition 4.6.Let {f(1), . . . , f(N)} ⊂CNbe the orthogonal eigenbasis from Theo-
+rem 4.2. Then, there exists γ >0and a family {f(1)
+ε, . . . , f(N)
+ε}0<ε<γ⊂CNof unit-norm
+eigenbases ofP ε,βsuch that, for everyℓ∈ {1, . . . , N}
+(i) the mapε∈(0, γ)7→f(ℓ)
+ε∈CNisC∞; and
+(ii)f(ℓ)
+εε→0− − →f(ℓ)inCN.
+Proof. Fix a natural number ℓ∈ { 1, . . . , N} . As established at the beginning of Section
+4.1, by means of perturbation theory, there exists a family{g(1)
+ε, . . . , g(N)
+ε}0<ε<γ⊂CNof
+unit-norm eigenbasis ofP ε,βsuch that (i) is satisfied.
+From Theorem 4.2, it follows that [ g(ℓ)
+ε]→[f(ℓ)] asε→ 0. Since ∥f(ℓ)∥= 1 and
+∥g(ℓ)
+ε∥= 1, we obtain that |⟨f(ℓ), g(ℓ)
+ε⟩| → 1 asε→0.Shrinking γ >0, if necessary, we
+can assume that 1/2<∥⟨f(ℓ), gε⟩∥for 0< ε < γ.
+Define
+f(ℓ)
+ε:=⟨f(ℓ), gε⟩
+|⟨f(ℓ), gε⟩|gεfor every 0< ε < γ.
+From a direct computation, we obtain that
+lim
+ε→0⟨f(ℓ)
+ε, f(ℓ)⟩= lim
+ε→0⟨f(ℓ), gε⟩
+|⟨f(ℓ), gε⟩|gε, f(ℓ)
+= lim
+ε→0⟨f(ℓ), gε⟩⟨fε, gε⟩
+|⟨f(ℓ), gε⟩|= lim
+ε→0|⟨gε, f(ℓ)⟩|= 1.
+This implies that f(ℓ)
+ε→f(ℓ)asε→0, since f(ℓ)
+εis a unit-norm vector for every 0 < ε < γ .
+□
+In what follows, we establish some notation. We fix the orthonormal basis {f(1), . . . , f(N)}
+⊂CNgiven in Theorem 4.2 and a family {f(1)
+ε, . . . , f(N)
+ε}0<ε<γ∈CNof unit-norm eigen-
+bases of Pε,βprovided by Proposition 4.6. In particular, we obtain that fεε→0− − →f(ℓ)for
+everyℓ∈ {1, . . . , N}.
+For each ℓ∈ { 1, . . . , N} and sufficiently small ε, we define µ(ℓ)
+εas the eigenvectors of the
+Hermitian conjugate ( Pε,β)∗, which satisfy ( Pε,β)∗µ(ℓ)
+ε=λ(ℓ)
+εµ(ℓ)
+ε.Furthermore, we impose
+the normalization condition
+⟨f(ℓ)
+µ, µ(ℓ)
+ε⟩= 1 for allℓ∈ {1, . . . , N}andε >0.(29)
+By Theorem 3.3 for ε >0 small enough, Pε,βadmits Ndistinct (and therefore simple)
+eigenvalues, and by appealing to standard matrix perturbation theory, the derivatives
+˙f(ℓ)
+ε=∂
+∂εf(ℓ)
+εexist for ε >0. The strategy of the proof of Theorem 4.5 is to understand
+the behaviour of ˙f(ℓ)
+εasε→ 0.To achieve this, for every ε >0 small enough we write ˙f(ℓ)
+ε
+in the basis
+{f(1)
+ε, . . . , f(ℓ−1)
+ε, µ(ℓ)
+ε, f(ℓ+1)
+ε. . . , f(N)
+ε},
+i.e.
+˙f(ℓ)
+ε=αℓ
+εµ(ℓ)
+ε+NX
+m=1,i̸=ℓαm
+εf(m)
+ε,(30)
+24
+
+
+===== PAGE 25 =====
+and we study the behaviour of the complex numbersα(1)
+ε, . . . , α(N)
+εasε→0.
+Observe that by repeating the proof of Theorem 4.2, but considering the matrix
+(Pε,β)∗=WεD−βinstead of Pε,β, and noting that the matrices ˆWLD−βandDβˆWLhave
+the same eigenvectors, we obtain that
+µ(ℓ)
+εε→0− − →f(ℓ).(31)
+Moreover, it is worth noting that
+⟨f(m)
+ε, µ(ℓ)
+ε⟩= 0 ifm̸=ℓ.(32)
+Indeed,
+⟨f(m)
+ε, µ(ℓ)
+ε⟩=1
+λ(m)
+ε⟨Pε,βf(m)
+ε, µ(ℓ)
+ε⟩=1
+λ(m)
+ε⟨f(m)
+ε,(Pε,β)∗µ(ℓ)
+ε⟩=λ(ℓ)
+ε
+λ(m)
+ε⟨f(m)
+ε, µ(ℓ)
+ε⟩.
+Sinceλ(ℓ)
+ε̸=λ(m)
+ε, it follows that⟨f(m)
+ε, µ(ℓ)
+ε⟩= 0 forℓ̸=m.
+With the above notation and initial observations established, we proceed to prove four
+preliminary results, which will culminate in Theorem 4.5.
+Proposition 4.7.Letℓ∈ {1, . . . , N}ands ℓ∈ {1, . . . , S}such thatℓ∈B sℓ, then
+lim
+ε→0
+f(ℓ)
+ε
+j−
+f(ℓ)
+j
+ε= lim
+ε→0
+f(ℓ)
+ε
+j
+ε=1
+e−2πikβ sℓ−e−2πikβ sj
+Dβ˙Wf(ℓ)
+j(33)
+for eachj∈ {1, . . . , N} \B sℓ,wheres j∈ {1, . . . , S}satisfiesj∈B sj.
+Proof. Consider j∈ { 1, . . . , N} \B sℓ, and sj∈ {1, . . . , S} such that j∈B sj.Recall from
+Lemma 3.4 that (f(ℓ))j= 0.On the one hand, we obtain that
+1
+ε
+Pε,βf(ℓ)
+ε−D βf(ℓ)
+j=1
+ε
+Dβ(Wε−Id)f(ℓ)
+ε+D β(f(ℓ)
+ε−f(ℓ))
+j
+=
+DβWε−Id
+ε
+f(ℓ)
+ε
+j+e2πikβ sj
+ε
+f(ℓ)
+ε−f(ℓ)
+j
+On the other hand, sincef(ℓ)∈Vsℓ(see (21)),
+1
+ε
+Pε,βf(ℓ)
+ε−D βf(ℓ)
+j=1
+ε
+λ(ℓ)
+εf(ℓ)
+ε−e−2πikβ sℓf(ℓ)
+ε+e−2πikβ sℓf(ℓ)
+ε−e−2πikβ sℓf(ℓ)
+j
+=1
+ε
+λ(ℓ)
+ε−e−2πikβ sℓ
+f(ℓ)
+ε
+j+e−2πikβ sℓ
+ε
+f(ℓ)
+ε−f(ℓ)
+j.
+Combining the above equations we obtain that
+
+e−2πikβ sj−e−2πikβ sℓ 
+(f(ℓ)
+ε)j−(f(ℓ))j
+ε!
+=λ(ℓ)
+ε−e−2πikβ sℓ
+ε
+f(ℓ)
+ε
+j−
+DβWε−Id
+ε
+f(ℓ)
+ε
+j.
+From Lemma 3.4 it follows that
+f(ℓ)
+ε
+jε→0− − →0 for everyj∈ {1, . . . , N} \B sℓ.Hence,
+lim
+ε→0
+f(ℓ)
+ε
+j−
+f(ℓ)
+j
+ε=1
+e−2πikβ sj−e−2πikβ sℓ
+ˆλ(ℓ)
+f(ℓ)
+j−
+Dβ˙Wf(ℓ)
+j
+=1
+e−2πikβ sℓ−e−2πikβ sj
+Dβ˙Wf(ℓ)
+j.
+□
+25
+
+
+===== PAGE 26 =====
+Remark 4.8.Proposition 4.7 gives an explicit componentwise formula for ( ˆf(ℓ))jat
+indices j /∈B sℓ, where ˆf(ℓ)is the response vector introduced in Theorem 4.5 (proved at
+the end of this section). In particular, (33)shows that outside the band Bsℓthe response
+is completely determined by the corresponding entries of Dβ˙Wf(ℓ), scaled by the factor
+e−2πikβ sℓ−e−2πikβ sj−1. If ˙Wis supported close to the diagonal (for example, if ˙Wis
+tridiagonal), then applying ˙Wto a vector supported in Bsℓcan only produce nonzero
+entries in entries close to Bsℓ(with width controlled by the bandwidth). Consequently,
+ˆf(ℓ)
+j= 0 for all indicesjoutside that entry neighbourhood.
+Proposition 4.9.Under the above notation of equation (30), the vector αε= (α1
+ε, . . . , αN
+ε)
+satisfiesα ε=
+Aε
+β−1vε
+βwhereAε
+βis aN×Nmatrix such that
+[Aε
+β]r,s=
+
+1,ifs=ℓ
+⟨µ(ℓ)
+ε, µ(r)
+ε⟩,ifr̸=ℓands=ℓ
+⟨f(s)
+ε, f(ℓ)
+ε⟩,ifℓ=rands̸=ℓ
+0,otherwise.
+and
+vε
+β=
+⟨˙f(ℓ)
+ε, µ(1)
+ε⟩, . . . ,⟨ ˙f(ℓ)
+ε, µ(ℓ−1)
+ε⟩,⟨˙f(ℓ)
+ε, f(ℓ)
+ε⟩,⟨˙f(ℓ)
+ε, µ(ℓ+1)
+ε⟩, . . . ,⟨ ˙f(ℓ)
+ε, µ(N)
+ε⟩
+.
+Proof.Observe that for everyr∈ {1, . . . , ℓ−1, ℓ+ 1, . . . , N}we obtain that
+⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=*
+αℓ
+εµ(ℓ)
+ε+NX
+m=1,m̸=rαm
+εf(m)
+ε, µ(r)
+ε+
+=αr
+ε+αℓ
+ε⟨µ(ℓ)
+ε, µ(r)
+ε⟩
+and
+⟨˙f(ℓ)
+ε, µ(ℓ)
+ε⟩=αℓ
+ε+NX
+m=1,m̸=ℓαm
+ε⟨f(m)
+ε, f(ℓ)
+ε⟩.
+By solving the above linear equation, we obtain the desired result.□
+Proposition 4.10.Let ℓ∈ { 1, . . . , N} andsℓ∈ {1, . . . , S} such that Nsℓ−1< ℓ≤N sℓ.
+Then,
+lim
+ε→0
+µ(ℓ)
+ε
+j−
+µ(ℓ)
+ε
+j
+ε= lim
+ε→0
+µ(ℓ)
+ε
+j
+ε=1
+e2πikβ sℓ−e2πikβ sj
+˙WD−βf(ℓ)
+j
+for eachj∈ {1, . . . , N} \B sℓ, ands j∈ {1, . . . , N}is such thatj∈B sj.
+Proof. The proof follows by repeating the computations in presented in Proposition 4.7
+and recalling from (31) thatµ(ℓ)
+εε→0− − →f(ℓ)for everyℓ∈ {1, . . . , N}.□
+Proposition 4.11.Let ℓ∈ { 1, . . . , N} andsℓ∈ {1, . . . , S} such that ℓ∈B sℓ. Then,
+givenr∈ {1, . . . , N}ands r∈ {1, . . . , S}such thatr∈B sr,
+(a)ifs r̸=sℓ,
+lim
+ε→0⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=1
+e−2πikβ sr−e−2πikβ sℓD
+Dβ˙Wf(ℓ), f(r)E
+;
+(b)ifs r=sℓandr̸=ℓ
+lim
+ε→0⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=1
+ˆλ(ℓ)−ˆλ(r)SX
+s=1,s̸=s ℓ1
+e−2πikβ s−e−2πikβ sℓD
+πsDβ˙Wf(ℓ), πs˙WD−βf(r)E
+;
+26
+
+
+===== PAGE 27 =====
+whereπ s:CN→V sis theCN-orthogonal projection ontoV s.
+Proof. We start by showing ( a). Differentiating the equation Pε,βf(ℓ)
+ε=λ(ℓ)
+εf(ℓ)
+εwith
+respect toε, and applying⟨·, µ(r)
+ε⟩in both sides we obtain from (32) that
+⟨˙Pε,βf(ℓ)
+ε, µ(r)
+ε⟩+⟨P ε,β˙f(ℓ)
+ε, µ(r)
+ε⟩=˙λ(ℓ)
+ε⟨f(ℓ)
+ε, µ(r)
+ε⟩+λ(ℓ)
+ε⟨˙f(ℓ)
+ε, µ(r)
+ε⟩.
+Hence⟨ ˙Pε,βf(ℓ)
+ε, µ(r)
+ε⟩+λ(r)
+ε⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=λ(ℓ)
+ε⟨˙f(ℓ)
+ε, µ(r)
+ε⟩,which implies
+⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=1
+λ(ℓ)
+ε−λ(r)
+ε⟨˙Pε,βf(ℓ)
+ε, µ(r)
+ε⟩.(34)
+Observe thatP ε,β=D βWε=D β
+Id +ε ˙W
+, in this way
+˙Pε,βf(ℓ)
+ε=D β˙Wf(ℓ)
+ε=1
+ε
+λ(ℓ)
+εf(ℓ)
+ε−D βf(ℓ)
+ε
+.(35)
+Combining equations (34) and (35)
+⟨˙f(ℓ)
+ε, µ(r)
+ε⟩=1
+λ(ℓ)
+ε−λ(r)
+ε1
+ε
+λ(ℓ)
+εf(ℓ)
+ε−D βf(ℓ)
+ε
+, µ(r)
+ε
+=1
+ε(λ(ℓ)
+ε−λ(r)
+ε)⟨Dβf(ℓ)
+ε, µ(r)
+ε⟩
+=1
+ε(λ(ℓ)
+ε−λ(r)
+ε)⟨e−2πikβ sℓf(ℓ)
+ε, µ(r)
+ε⟩+1
+ε(λ(ℓ)
+ε−λ(r)
+ε)⟨(D β−e−2πikβ sℓ)(1−π sℓ)f(ℓ), µ(r)
+ε⟩
+=1
+λ(ℓ)
+ε−λ(r)
+ε1
+ε
+Dβ−e−2πikβ sℓ
+(1−π sℓ)f(ℓ)
+ε, µ(r)
+ε
+(36)
+where πsℓ:CN→V sℓdenotes the CN-orthogonal projection onto Vs. From Proposition
+4.7 and (31) it follows that ifr∈ {1, . . . , N} \B sℓ
+lim
+ε→0⟨˙f(ℓ)
+ε, µ(r)
+ε⟩= lim
+ε→01
+λ(sℓ)
+ε−λ(sj)
+ε*
+
+Dβ−e−2πikβ sℓ(1−π sℓ)f(ℓ)
+ε−0
+ε, µ(r)
+ε+
+=−1
+e−2πikβ sℓ−e−2πikβ srD
+Dβ˙Wf(ℓ), f(r)E
+.
+implying (a).
+We now show ( b). From (29),(36)and Proposition 4.10 we obtain that if sr=sℓand
+ℓ̸=r,
+lim
+ε→0⟨˙f(ℓ)
+ε, µ(r)
+ε⟩= lim
+ε→0*
+(Dβ−e−2πikβ sℓ)(1−π sℓ)f(ℓ)
+ε
+ε,1
+ˆλ(ℓ)−ˆλ(r)
+ε+O(ε)µ(r)
+ε+
+=−1
+ˆλ(ℓ)−ˆλ(r)SX
+s=1,j̸=s ℓ1
+e−2πikβ sℓ−e−2πikβ sNsX
+j=N s−1+1
+Dβ˙Wf(ℓ)
+j
+˙WD−βf(r)
+j
+=−1
+ˆλ(ℓ)−ˆλ(r)SX
+s=1,s̸=s ℓ1
+e−2πikβ sℓ−e−2πikβ sD
+πsDβ˙Wf(ℓ), πs˙WD−βf(r)E
+.
+□
+With the above results, we can finally prove Theorem 4.5
+27
+
+
+===== PAGE 28 =====
+Proof of Theorem 4.5. We start by proving ( i). Recall from Definition 4.1 that π:v∈
+CN7→[v]∈CPN−1denotes a C∞quotient map from CNontoCPN−1. Since [ v] = [tv] for
+everyt∈C\ {0}andv∈CN, from the chain rule we obtain that
+Dvπ(sv) = 0 for everys∈C.(37)
+Hence, from the inverse function theorem and (23)we obtain that there exists δ >0, such
+that for eachε≥0 small enough and everyℓ∈ {1, . . . , N}the map
+v∈
+f(ℓ)
+ε+w:w∈CN,⟨w, f(ℓ)
+ε⟩= 0 and∥w∥< δ	
+7→[v]∈CPN−1
+is a diffeomorphism with its image, wheref(ℓ)
+0should be interpreted asf(ℓ).
+Observe that [ f(ℓ)
+ε] = [f(ℓ)+εw+O(ε)] for some w∈CNsatisfying ⟨w, f(ℓ)⟩= 0 if and
+only if for everyC∞functiong:CPN−1→Rit holds that
+g◦[f(ℓ)
+ε] =g◦[f(ℓ)] +εD[f(ℓ)]gDf(ℓ)π w+O(ε).(38)
+In the following, we show that (38) holds when takingw= ˆf(ℓ)(see (28)).
+For every ε >0 small enough and ℓ∈ { 1, . . . , S} denote ˆf(ℓ)
+εas the CN-orthogonal
+projection of ˙f(ℓ)
+ε(see(30)and Proposition 4.11) onto the linear space {v∈CN;⟨v, f(ℓ)
+ε⟩=
+0}.From (29) and (32) we have that
+span
+µ(1)
+ε, . . . , µ(ℓ−1)
+ε, µ(ℓ+1)
+ε, . . . , µ(N)
+ε	
+={v∈CN:⟨v, f(ℓ)
+ε⟩= 0}.
+By combining Propositions 4.9 and 4.11 with the definition of ˆf(ℓ)in(28), we obtain that
+lim
+ε→0ˆf(ℓ)
+ε=SX
+s=1,s̸=s ℓX
+r∈Bsℓ\{ℓ}1
+ˆλ(ℓ)−ˆλ(r)1
+e−2πikβ s−e−2πikβ sℓD
+πsDβ˙Wf(ℓ), πs˙WD−βf(r)E
+f(r)
++SX
+s=1,s̸=s ℓX
+r∈Bs1
+e−2πikβ s−e−2πikβ sℓD
+Dβ˙Wf(ℓ), f(r)E
+f(r)=ˆf(ℓ).(39)
+From the mean value theorem we obtain that for every ε >0 small enough, there exists
+cε∈(0, ε) such that
+g◦
+f(ℓ)
+ε
+−g◦
+f(ℓ)
+=εd
+dt
+g◦π◦f(ℓ)
+t
+t=cε=εD [fcε]gDf(ℓ)
+cεπ˙f(ℓ)
+cε.
+By the definition of ˆf(ℓ)
+cε, we that ⟨ˆf(ℓ)
+cε, f(ℓ)
+cε⟩= 0 and ˙fℓ
+cε=ˆfℓ
+cε+bεfcεfor some bε∈C. In
+view of equation (37) it follows that
+Df(ℓ)
+cεπ˙f(ℓ)
+cε= Df(ℓ)
+cεπ(ˆf(ℓ)
+cε+bεf(ℓ)
+ε) = Df(ℓ)
+cεπˆf(ℓ)
+cε.(40)
+Hence, combining (39), (23) and (40) we obtain that
+lim
+ε→0g◦
+f(ℓ)
+ε
+−g◦
+f(ℓ)
+ε= D[f(ℓ)]gDf(ℓ)πˆf(ℓ).
+Thus, [ fℓ
+ε] = [f(ℓ)+εˆf(ℓ)+O(ε)] and by (23),(39)and the property ⟨f(ℓ)
+ε,ˆf(ℓ)
+ε⟩= 0 we
+have⟨f(ℓ),ˆf(ℓ)⟩= 0, concluding the proof of (i).
+In the following, we prove ( ii). Since [ fℓ
+ε] = [f(ℓ)+εˆf(ℓ)+O(ε)],F(ℓ)
+ε=f(ℓ)
+εe2πikxand
+ˆF(ℓ)(j, x) := ˆf(ℓ)(j)e2πikxfor everyε >0 small enough, it holds that
+Π(ℓ)
+ε(·) =
+·, F(ℓ)
+ε
+F(ℓ)
+ε=D
+·, F(ℓ)+εˆF(ℓ)+O(ε)E
+∥F(ℓ)+εˆF(ℓ)+O(ε)∥2
+F(ℓ)+εˆF(ℓ)+O(ε)
+.
+28
+
+
+===== PAGE 29 =====
+Since⟨F(ℓ),ˆF(ℓ)⟩= 0,we obtain that
+1
+∥F(ℓ)+εˆF(ℓ)+O(ε)∥2=1
+⟨F(ℓ)+εˆF(ℓ)+O(ε),⟨F(ℓ)+εˆF(ℓ)+O(ε)⟩= 1 +O(ε).
+In this way,
+Π(ℓ)
+ε(·) =D
+·, F(ℓ)+εˆF(ℓ)+O(ε)E
+F(ℓ)+εˆF(ℓ)+O(ε)
+= Π(ℓ)(·) +ε
+·, F(ℓ)ˆF(ℓ)+D
+·,ˆF(ℓ)E
+F(ℓ)
++O(ε).(41)
+Finally, we prove ( iii). Note that ( i) implies ⟨F(ℓ),ˆF(ℓ)⟩= 0. From the construction
+of the operator O(ε) in(41), it is clear that this operator is of finite rank and satisfies
+∥O(ε)∥/εε→0− − →0.
+□
+5.Proof of Theorem 2.102(c)
+From Lemma 3.2 and Theorem 4.2 we obtain that for every ℓ∈ { 1, . . . , N} and for
+everyε >0 sufficiently small
+λ(ℓ)
+ε=e−2πikβ s+εˆλ(ℓ)+O(ε) for somes∈ {1, . . . , S}.(42)
+In this section we show that there existsˆˆλ(ℓ)∈Csuch that
+λ(ℓ)
+ε=e−2πikβ s+εˆλ(ℓ)+ε2ˆˆλ(ℓ)+O(ε2) for somes∈ {1, . . . , S}.(43)
+The proof of Theorem 2.10 is complete once the above equation is established. We first
+establish the following lemma before proving equation (43).
+Lemma 5.1.Letγ >0be as in Proposition 4.6. For everyℓ∈ {1, . . . , N}the map
+ε∈[0, γ)7→
+
+˙λ(ℓ)
+ε=∂
+∂ελ(ℓ)
+ε,ifε∈(0, γ k),
+ˆλ(ℓ),ifε= 0,(44)
+is continuous at0and differentiable in(0, γ).
+Proof. Letℓ∈ { 1, . . . , N} ands∈ { 1, . . . , S} such that ℓ∈B s. Since Pε,βf(ℓ)
+ε=λ(ℓ)
+εf(ℓ)
+ε,
+we obtain that
+˙Pε,βf(ℓ)
+ε+P ε,β˙f(ℓ)
+ε=˙λ(ℓ)
+εf(ℓ)
+ε+λ(ℓ)
+ε˙f(ℓ)
+ε.
+By applying⟨·, µ(ℓ)
+ε⟩in both sides, we obtain from (29) andP∗
+ε,βµ(ℓ)
+ε=λ εµ(ℓ)
+εthat
+˙λ(ℓ)
+ε=⟨˙Pε,βf(ℓ)
+ε, µ(ℓ)
+ε⟩=⟨D β˙Wf(ℓ)
+ε, µ(ℓ)
+ε⟩.(45)
+Since ε7→ ˙λ(ℓ)
+εis differentiable in (0 , γ) (see Proposition 4.6) to conclude the proof we
+must prove that (44) is continuous at 0. Therefore, from (42) it is enough to show that
+lim
+ε→0˙λε= lim
+ε→0⟨˙Pε,βf(ℓ)
+ε, µ(ℓ)
+ε⟩= lim
+ε→0λ(ℓ)
+ε−e−2πikβ s
+ε=ˆλ(ℓ).
+Observe that for everys∈ {1, . . . , S},
+Dβ−e−2ikβ s= (D β−e−2ikβ s)(1−π s) (46)
+whereπ s:CN→V sis theCN-orthogonal projection ontoV s. From (35), we obtain that
+⟨˙Pε,βf(ℓ)
+ε, µ(ℓ)
+ε⟩=1
+ε
+λ(ℓ)
+εf(ℓ)
+ε−D βf(ℓ)
+ε, µ(ℓ)
+ε
+29
+
+
+===== PAGE 30 =====
+=1
+ε
+λ(ℓ)
+ε−e−2πikβ s
+−1
+ε
+
+Dβ−e−2πikβ s
+f(ℓ)
+ε, µ(ℓ)
+ε
+,
+=1
+ε
+λ(ℓ)
+ε−e−2πikβ s
+−1
+ε
+
+Dβ−e−2πikβ s
+(1−π s)f(ℓ)
+ε, µ(ℓ)
+ε
+.
+Since [ µ(ℓ)
+ε]ε→0− − → [f(ℓ)] with f(ℓ)∈V sand (1 −π s)f(ℓ)
+ε/εconverges to an element in the
+orthogonal complement ofVsasε→0 (see 4.7), we have that
+lim
+ε→01
+ε(1−π s)f(ℓ)
+ε, µ(ℓ)
+ε
+= 0,
+which implies that
+lim
+ε→0˙λ(ℓ)
+ε= lim
+ε→0⟨˙Pε,βf(ℓ)
+ε, µ(ℓ)
+ε⟩= lim
+ε→0λ(ℓ)
+ε−e−2πikβ s
+ε=ˆλ(ℓ).
+□
+Theorem 5.2.Givenℓ∈ {1, . . . , N}, we have that
+λ(ℓ)
+ε=e−2πikβ sℓ+εˆλ(ℓ)+ε2ˆˆλ(ℓ)+O(ε2),
+wheres ℓ∈ {1, . . . , S}such thatℓ∈B sℓ,ˆλ(ℓ)is given by Theorem 4.2 and
+ˆˆλ(ℓ)= 2SX
+s=1,s̸=s ℓ1
+e−2πikβ sℓ−e−2πikβ sD
+πsDβ˙Wf(ℓ), πs˙WD−βf(ℓ)E
+andπ s:CN→V sis theCN-orthogonal projection ontoV s.
+Proof. Recall from (45)that ˙λ(ℓ)
+ε=⟨˙Pε,βf(ℓ)
+ε, µ(ℓ)
+ε⟩=⟨Dβ˙Wf(ℓ)
+ε, µ(ℓ)
+ε⟩for every ε >0 small
+enough. Hence
+¨λ(ℓ)
+ε=⟨D β˙W˙f(ℓ)
+ε, µ(ℓ)
+ε⟩+⟨D β˙Wf(ℓ)
+ε,˙µ(ℓ)
+ε⟩=⟨D β˙Wf(ℓ)
+ε,˙µ(ℓ)
+ε⟩+⟨ ˙f(ℓ)
+ε,
+Dβ˙W∗
+µ(ℓ)
+ε⟩.
+From (35), (46) and
+⟨˙f(ℓ)
+ε, µ(ℓ)
+ε⟩+⟨f(ℓ)
+ε,˙µ(ℓ)
+ε⟩=∂
+∂ε⟨f(ℓ)
+ε, µ(ℓ)
+ε⟩=∂
+∂ε1 = 0,
+we obtain that
+¨λ(ℓ)
+ε=1
+ε
+λ(ℓ)
+εf(ℓ)
+ε−D βf(ℓ)
+ε
+,˙µ(ℓ)
+ε
++
+˙f(ℓ)
+ε,1
+ε
+λ(ℓ)
+εµ(ℓ)
+ε−Dβµ(ℓ)
+ε
+=1
+ελ(ℓ)
+ε
+⟨˙f(ℓ)
+ε, µ(ℓ)
+ε⟩+⟨f(ℓ)
+ε,˙µ(ℓ)
+ε⟩
+−
+Dβ˙f(ℓ)
+ε,1
+εµ(ℓ)
+ε
+−1
+εDβf(ℓ)
+ε,˙µ(ℓ)
+ε
+=
+−e−2πikβ sℓ˙f(ℓ)
+ε+e−2πikβ sℓ˙f(ℓ)
+ε−D β˙f(ℓ)
+ε,1
+εµ(ℓ)
+ε
++1
+ε
+−e−2πikβ sℓf(ℓ)
+ε+e−2πikβ sℓf(ℓ)
+ε−D βf(ℓ)
+ε
+,˙µ(ℓ)
+ε
+=−e−2πikβ sℓ
+εD
+˙f(ℓ)
+ε, µ(ℓ)
+εE
++
+f(ℓ)
+ε,˙µ(ℓ)
+ε
++
+(e−2πikβ sℓ−D β)(1−π s)˙f(ℓ)
+ε,1
+εµ(ℓ)
+ε
++1
+ε(e−2πikβ sℓ−D β)(1−π sℓ)f(ℓ)
+ε,˙µ(ℓ)
+ε
+=
+(e−2πikβ sℓ−D β)(1−π s)˙f(ℓ)
+ε,1
+ε(1−π s)µ(ℓ)
+ε
+30
+
+
+===== PAGE 31 =====
++1
+ε(e−2πikβ sℓ−D β)(1−π sℓ)f(ℓ)
+ε,(1−π sℓ) ˙µ(ℓ)
+ε
+.
+where the last equality follows from the fact that (1 −π s) is an orthogonal projection.
+From Propositions 4.7 and 4.10 we obtain that
+lim
+ε→0¨λ(ℓ)
+ε=
+(e−2πikβ sℓ−D β) lim
+ε→0(1−π s)˙f(ℓ)
+ε,lim
+ε→01
+ε(1−π s)µ(ℓ)
+ε
++
+(e−2πikβ sℓ−D β) lim
+ε→01
+ε(1−π sℓ)f(ℓ)
+ε,lim
+ε→0(1−π sℓ) ˙µ(ℓ)
+ε
+.
+=SX
+s=1,s̸=s ℓ(e−2πikβ sℓ−e−2πikβ s)X
+j∈Bs
+lim
+ε→0˙fε
+j
+lim
+ε→01
+εµ(ℓ)
+ε
+j
++SX
+s=1,s̸=s ℓ(e−2πikβ sℓ−e−2πikβ s)X
+j∈Bs
+lim
+ε→01
+εfε
+j
+lim
+ε→0˙µ(ℓ)
+ε
+j
+=2SX
+s=1,s̸=s ℓ1
+e−2πikβ sℓ−e−2πikβ sX
+j∈Bs
+Dβ˙Wf(ℓ)
+j
+˙WD−βf(ℓ)
+j
+From Lemma 5.1 the map
+ε∈[0, γ)7→
+
+˙λ(ℓ)
+ε=∂
+∂ελ(ℓ)
+ε,ifε∈(0, γ),
+ˆλ(ℓ),ifε= 0,
+is continuous. From the Mean Value Theorem we have that for every ε >0, sufficiently
+small, there existsc ε∈(0, ε) such that
+˙λ(ℓ)
+ε−ˆλ(ℓ)=¨λcεε,
+therefore
+lim
+ε→0˙λ(ℓ)
+ε−ˆλ(ℓ)
+ε= 2SX
+s=1,s̸=s ℓ1
+e−2πikβ sℓ−e−2πikβ sD
+πsDβ˙Wf(ℓ), πs˙WD−βf(ℓ)E
+□
+Below, we finally prove Theorem 2.10.
+Proof. The proof of Theorem 2.10 follows from a direct combination of Proposition 3.7
+with Theorems 4.2, 4.5 and 5.2.□
+6.Proof of Proposition 2.13
+The proof of Proposition 2.13 follows from standard techniques in perturbation theory
+(see [18]).
+Proof of Proposition 2.13. From Lemma 3.1 and [ 18, II.2.2], we obtain that the maps
+in(15) are analytic functions. Equation (16) follows from differentiating the identity
+Dk,αWεfα,k,ε=λk,ε,αfk,ε,α,with respect to αand observing, we can invert the left-hand
+side of the identity
+(Dk,αWε−λ k,ε,α)∂
+∂αfk,ε,α= (D k,αWε−λ k,ε,α)−1∂
+∂αDk,αWε−∂
+∂αλk,ε,α
+fk,ε,α,
+since⟨f k,ε,α,∂
+∂αℓfk,ε,α⟩= 0,for eachℓ∈ {1, . . . , N}.
+31
+
+
+===== PAGE 32 =====
+□
+7.Explicit formulae for ˆλ(ℓ)
+k,βandf(ℓ)forW εdefined in(1)
+Proposition 7.1([ 23,31]).Let ˆPβbe the matrix defined in Theorem 4.2. The eigenvalues
+ofˆPβare
+ˆλ(ℓ)
+k,β=
+
+e−2πikβ 1
+−1 + cos2ℓ−1
+2N1+ 1π
+,ifℓ∈ {1,2, . . . , N 1}
+e−2πikβ s
+−1 + cosℓ−N s−1
+Ns−N s−1+ 1π
+,ifℓ∈ {N s−1+ 1, . . . , N s}, s̸= 1, S
+e−2πikβ S
+−1 + cos2(ℓ−N S−1)−1
+2(N−N S−1) + 1π
+,ifℓ∈ {N S−1+ 1, . . . , N}
+and their respective eigenvectorsf(j)are:
+(a)ifℓ∈ {1, . . . , N 1}
+
+f(ℓ)
+j=
+
+sin
+π(2ℓ+ 1)N1+ 1
+2N1+ 1−j
+2N1+ 1
+,ifj∈ {1, . . . , N 1}
+0,ifj∈ {N 1+ 1, . . . , N}.
+(b)ifℓ∈ {N s−1+ 1, . . . , N s}ands∈ {2, . . . , S−1}
+
+f(ℓ)
+j=
+
+sin
+π(ℓ−N s−1)(j−N s−1)
+Ns−N s−1+ 1
+,ifj∈ {N s−1+ 1, . . . , N s}
+0,ifj∈ {1, . . . , N} \ {N s−1+ 1, . . . , N s}.
+(c)ifℓ∈ {N S−1+ 1, . . . , N}
+
+f(ℓ)
+j=
+
+0,ifj∈ {1,2, . . . , N S−1}
+sin
+π(2ℓ+ 1)j−(N−N S−1)
+2(N−N S−1) + 1
+,ifj∈ {N S−1+ 1, . . . , N}.
+The quantitiesˆˆλkand ˆfkcan be explicitly computed using the above equations and
+Theorem 2.10 (via Theorems 4.5 and 5.2).
+8.Acknowledgements
+GF acknowledges productive early discussions with Dimitris Giannakis about a related
+model during a visit to Dartmouth in 2023. GF and MMC are supported by an Australian
+Research Council Laureate Fellowship (FL230100088).
+References
+[1]Jos´ e F. Alves, V´ ıtor Ara´ ujo, and Carlos H. V´ asquez. Stochastic stability of non-uniformly hyperbolic
+diffeomorphisms.Stoch. Dyn., 7(3):299–333, 2007.
+[2]Bernat Bassols Cornudella and Matheus M. Castro. Conditioned stochastic stability of equilibrium
+states on uniformly hyperbolic sets, 2025.
+[3]Bernat Bassols Cornudella, Matheus Manzatto de Castro, and Jeroen S. W. Lamb. Conditioned
+stochastic stability of equilibrium states on uniformly expanding repellers,arXiv:2405.01343,2024.
+[4]Harry Crimmins and Gary Froyland. Fourier approximation of the statistical properties of Anosov
+maps on tori.Nonlinearity, 33(11):6244, 2020.
+[5]Michael Dellnilz and Oliver Junge. Set oriented numerical methods in space mission design. In
+Elsevier Astrodynamics Series, volume 1, pages 127–IV. 2006.
+[6]Michael Dellnitz, Gary Froyland, and Stefan Sertl. On the isolated spectrum of the Perron-Frobenius
+operator.Nonlinearity, 13(4):1171, 2000.
+32
+
+
+===== PAGE 33 =====
+[7]Michael Dellnitz and Oliver Junge. On the approximation of complicated dynamical behavior.SIAM
+J. Numer. Anal., 36(2):491–515, 1999.
+[8]Tanja Eisner, B´ alint Farkas, Markus Haase, and Rainer Nagel.Operator theoretic aspects of ergodic
+theory, volume 272. Springer, 2015.
+[9]Valter Franceschini, Claudio Giberti, and Zhi Ming Zheng. Characterization of the Lorenz attractor
+by unstable periodic orbits.Nonlinearity, 6(2):251–258, 1993.
+[10]Gary Froyland, Dimitrios Giannakis, Benjamin R Lintner, Maxwell Pike, and Joanna Slawinska.
+Spectral analysis of climate dynamics with operator-theoretic approaches.Nature communications,
+12(1):6570, 2021.
+[11]Gary Froyland, Dimitrios Giannakis, Edoardo Luna, and Joanna Slawinska. Revealing trends and
+persistent cycles of non-autonomous systems with autonomous operator-theoretic techniques.Nature
+Communications, 15(1):4268, 2024.
+[12]Gary Froyland, Oliver Junge, and P´ eter Koltai. Estimating long-term behavior of flows without
+trajectory integration: The infinitesimal generator approach.SIAM Journal on Numerical Analysis,
+51(1):223–247, 2013.
+[13]Gary Froyland and Kathrin Padberg. Almost-invariant sets and invariant manifolds—connecting
+probabilistic and geometric descriptions of coherent structures in flows.Phys. D, 238(16):1507–1523,
+2009.
+[14]Gary Froyland, Kathrin Padberg, Matthew H England, and Anne Marie Treguier. Detection of
+coherent oceanic structures via transfer operators.Physical review letters, 98(22):224503, 2007.
+[15]Gary Froyland, Robyn M Stuart, and Erik van Sebille. How well-connected is the surface of the
+global ocean?Chaos: An Interdisciplinary Journal of Nonlinear Science, 24(3), 2014.
+[16]Dimitris Giannakis. Data-driven spectral decomposition and forecasting of ergodic dynamical systems.
+Applied and Computational Harmonic Analysis, 47(2):338–396, 2019.
+[17]Roger A. Horn and Charles R. Johnson.Matrix analysis. Cambridge University Press, Cambridge,
+second edition, 2013.
+[18]Tosio Kato.Perturbation theory for linear operators. Classics in Mathematics. Springer-Verlag, Berlin,
+1995. Reprint of the 1980 edition.
+[19]Gerhard Keller and Carlangelo Liverani. Stability of the spectrum for transfer operators.Annali
+della Scuola Normale Superiore di Pisa-Classe di Scienze, 28(1):141–152, 1999.
+[20]Rafail Khasminskii.Stochastic stability of differential equations, volume 66 ofStochastic Modelling
+and Applied Probability. Springer, Heidelberg, second edition, 2012. With contributions by G. N.
+Milstein and M. B. Nevelson.
+[21]Yuri Kifer. Some theorems on small random perturbations of dynamical systems.Uspehi Mat. Nauk,
+29(3(177)):205–206, 1974.
+[22]John M. Lee.Introduction to smooth manifolds, volume 218 ofGraduate Texts in Mathematics.
+Springer, New York, second edition, 2013.
+[23]L. Losonczi. Eigenvalues and eigenvectors of some tridiagonal matrices.Acta Math. Hungar., 60(3-
+4):309–322, 1992.
+[24]Igor Mezi´ c and Andrzej Banaszuk. Comparison of systems with complex behavior.Physica D:
+Nonlinear Phenomena, 197(1-2):101–133, 2004.
+[25] Philippe Miron, Francisco J Beron-Vera, Maria J Olascoaga, Gary Froyland, P P´ erez-Brunius, and
+J Sheinbaum. Lagrangian geography of the deep gulf of mexico.Journal of physical oceanography,
+49(1):269–290, 2019.
+[26]Clarence W Rowley, Igor Mezi´ c, Shervin Bagheri, Philipp Schlatter, and Dan S Henningson. Spectral
+analysis of nonlinear flows.Journal of Fluid Mechanics, 641:115–127, 2009.
+[27]Ch Sch¨ utte, Wilhelm Huisinga, and Peter Deuflhard.Transfer operator approach to conformational
+dynamics in biomolecular systems. Springer, 2001.
+[28]Stanislaw M. Ulam.Problems in Modern Mathematics. Science Editions, John Wiley & Sons, New
+York, 1964.
+[29] Matthew O. Williams, Clarence W. Rowley, and Ioannis G. Kevrekidis. A kernel-based method for
+data-driven koopman spectral analysis.Journal of Computational Dynamics, 2(2):247–265, 2015.
+[30]Lai-Sang Young. Stochastic stability of hyperbolic attractors.Ergodic Theory Dynam. Systems,
+6(2):311–319, 1986.
+[31]Wen-Chyuan Yueh. Eigenvalues of several tridiagonal matrices.Appl. Math. E-Notes, 5:66–74, 2005.
+33
